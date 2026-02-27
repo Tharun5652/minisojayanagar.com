@@ -1,0 +1,1578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miniso Jayanagar | Hollywood Mode</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+    /* ══════════════════════════════════════════
+       CINEMA COLOR SYSTEM — RED × WHITE × BLACK
+    ══════════════════════════════════════════ */
+    :root {
+        --red:    #E21B24;
+        --red-dim: rgba(226, 27, 36, 0.08);
+        --white:  #FFFFFF;
+        --soft:   #FAFAFA;
+        --black:  #0A0A0A;
+        --divider:#EDEDED;
+        --grey:   #888888;
+
+        --f-display: 'Cormorant Garamond', serif;
+        --f-body:    'Outfit', sans-serif;
+
+        --ease:    cubic-bezier(0.16, 1, 0.3, 1);
+        --ease-sm: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+        --nav-h: 76px;
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing:antialiased; }
+    html { scroll-behavior: smooth; }
+
+    body {
+        background: var(--white);
+        color: var(--black);
+        font-family: var(--f-body);
+        overflow-x: hidden;
+        cursor: none;
+    }
+
+    /* ══════════════════════════════════════════
+       CINEMA TRANSITION OVERLAY
+    ══════════════════════════════════════════ */
+    #cinema-transition {
+        position: fixed; inset: 0;
+        background: linear-gradient(170deg, #E21B24 0%, #c4171f 100%);
+        z-index: 99000;
+        transform: translateY(100%);
+        pointer-events: none;
+        will-change: transform;
+    }
+    #cinema-transition.run-enter {
+        animation: cinemaEnter 1.6s var(--ease) forwards;
+    }
+    #cinema-transition.run-reveal {
+        animation: cinemaReveal 1.6s var(--ease) forwards;
+    }
+    @keyframes cinemaEnter {
+        0%   { transform: translateY(100%); }
+        45%  { transform: translateY(0%); }
+        100% { transform: translateY(0%); }
+    }
+    @keyframes cinemaReveal {
+        0%   { transform: translateY(0%); }
+        100% { transform: translateY(-100%); }
+    }
+
+    /* ══════════════════════════════════════════
+       CUSTOM CURSOR — MINIMAL CINEMA DOT
+    ══════════════════════════════════════════ */
+    #cur-dot {
+        width: 5px; height: 5px;
+        background: var(--red);
+        border-radius: 50%;
+        position: fixed; z-index: 99999;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        transition: transform 0.05s linear;
+        will-change: left, top;
+    }
+    #cur-ring {
+        width: 28px; height: 28px;
+        border: 1px solid rgba(226,27,36,0.35);
+        background: transparent;
+        border-radius: 50%;
+        position: fixed; z-index: 99998;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        transition: width 0.6s var(--ease), height 0.6s var(--ease), border-color 0.5s;
+        will-change: left, top;
+        opacity: 0.75;
+    }
+    body.cur-hover #cur-ring  { width: 42px; height: 42px; border-color: rgba(10,10,10,0.25); }
+    body.cur-product #cur-ring { width: 54px; height: 54px; border-color: rgba(226,27,36,0.45); }
+
+    /* ══════════════════════════════════════════
+       MARQUEE — REMOVED FOR LEVEL 3 CINEMA MODE
+       Luxury flagship brands don't use ticker bars.
+    ══════════════════════════════════════════ */
+    .marquee-bar { display: none; }
+
+    /* ══════════════════════════════════════════
+       HEADER — ROLEX CENTER LOGO
+    ══════════════════════════════════════════ */
+    #hdr {
+        height: var(--nav-h);
+        position: fixed; top: 0; left: 0; right: 0;
+        display: grid; grid-template-columns: 1fr auto 1fr;
+        align-items: center; padding: 0 52px;
+        z-index: 1000;
+        transition: height 0.5s var(--ease), background 0.5s, border-color 0.5s;
+        border-bottom: 1px solid transparent;
+    }
+    #hdr.dark-mode { color: white; }
+    #hdr.light-mode {
+        height: 62px;
+        background: rgba(255,255,255,0.92);
+        backdrop-filter: blur(20px) saturate(180%);
+        border-bottom-color: var(--divider);
+        color: var(--black);
+    }
+
+    .hdr-left { display: flex; align-items: center; gap: 36px; }
+    .hdr-nav {
+        font-size: 0.7rem; font-weight: 500; letter-spacing: 2.5px; text-transform: uppercase;
+        color: inherit; text-decoration: none; cursor: none;
+        position: relative; padding-bottom: 3px; border-bottom: 1px solid transparent;
+        transition: border-color 0.3s;
+    }
+    .hdr-nav:hover { border-bottom-color: currentColor; }
+
+    .hdr-center { display: flex; flex-direction: column; align-items: center; transition: transform 0.5s var(--ease); }
+    #hdr.light-mode .hdr-center { transform: scale(0.9); }
+    .hdr-logo {
+        font-family: var(--f-display);
+        font-size: 1.25rem; font-weight: 600;
+        letter-spacing: 8px; text-transform: uppercase;
+        color: inherit; line-height: 1; white-space: nowrap;
+    }
+    .hdr-sub {
+        font-size: 0.54rem; font-weight: 500; letter-spacing: 4px; text-transform: uppercase;
+        color: var(--red); margin-top: 5px;
+    }
+    #hdr.dark-mode .hdr-sub { color: rgba(255,255,255,0.4); }
+
+    .hdr-right { display: flex; align-items: center; justify-content: flex-end; gap: 20px; }
+    .hdr-icon {
+        width: 36px; height: 36px;
+        display: flex; align-items: center; justify-content: center;
+        color: inherit; text-decoration: none; font-size: 0.9rem; cursor: none;
+        transition: color 0.35s var(--ease-sm);
+        background: none; border: none;
+    }
+    #hdr.light-mode .hdr-icon { color: var(--black); }
+    .hdr-icon:hover { color: var(--red) !important; }
+
+    .hdr-menu-btn {
+        display: none; align-items: center; gap: 10px;
+        font-size: 0.68rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase;
+        color: inherit; background: none; border: none; cursor: none;
+    }
+    .hdr-lines { display: flex; flex-direction: column; gap: 5px; width: 22px; }
+    .hdr-lines span { height: 1px; background: currentColor; display: block; transition: 0.4s var(--ease); }
+    .hdr-lines span:nth-child(2) { width: 70%; }
+
+    /* ══════════════════════════════════════════
+       FULLSCREEN CINEMA MENU
+    ══════════════════════════════════════════ */
+    #cinema-menu {
+        position: fixed; inset: 0; background: var(--white);
+        z-index: 2000;
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center;
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.6s var(--ease);
+    }
+    #cinema-menu.open { opacity: 1; pointer-events: auto; }
+
+    .cm-close {
+        position: absolute; top: 28px; right: 40px;
+        width: 44px; height: 44px;
+        display: flex; align-items: center; justify-content: center;
+        cursor: none; color: #aaa; font-size: 1rem; background: none; border: none;
+        transition: color 0.35s var(--ease-sm), transform 0.4s var(--ease);
+    }
+    .cm-close:hover { color: var(--red); transform: rotate(90deg); }
+
+    .cm-brand {
+        position: absolute; top: 34px; left: 40px;
+        font-family: var(--f-display); font-size: 1rem;
+        font-weight: 600; letter-spacing: 6px; text-transform: uppercase; color: var(--black);
+    }
+
+    .cm-list { list-style: none; text-align: center; }
+    .cm-item {
+        overflow: hidden; margin-bottom: 8px;
+    }
+    .cm-btn {
+        display: inline-block;
+        font-family: var(--f-display);
+        font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+        font-weight: 400;
+        letter-spacing: 1px;
+        color: var(--black);
+        background: none; border: none;
+        cursor: none; padding: 12px 0;
+        position: relative;
+        transform: translateY(40px); opacity: 0;
+        transition: color 0.3s;
+    }
+    #cinema-menu.open .cm-btn { animation: cmItemIn 0.7s var(--ease) forwards; }
+    .cm-list li:nth-child(1) .cm-btn  { animation-delay: 0.1s; }
+    .cm-list li:nth-child(2) .cm-btn  { animation-delay: 0.18s; }
+    .cm-list li:nth-child(3) .cm-btn  { animation-delay: 0.26s; }
+    .cm-list li:nth-child(4) .cm-btn  { animation-delay: 0.34s; }
+    .cm-list li:nth-child(5) .cm-btn  { animation-delay: 0.42s; }
+    .cm-list li:nth-child(6) .cm-btn  { animation-delay: 0.50s; }
+    .cm-list li:nth-child(7) .cm-btn  { animation-delay: 0.58s; }
+    .cm-list li:nth-child(8) .cm-btn  { animation-delay: 0.66s; }
+    .cm-list li:nth-child(9) .cm-btn  { animation-delay: 0.74s; }
+    .cm-list li:nth-child(10) .cm-btn { animation-delay: 0.82s; }
+    .cm-list li:nth-child(n+11) .cm-btn { animation-delay: 0.90s; }
+    @keyframes cmItemIn { to { transform: translateY(0); opacity: 1; } }
+
+    /* Red underline from center on hover */
+    .cm-btn::after {
+        content: ''; position: absolute; bottom: 8px; left: 50%; right: 50%;
+        height: 1px; background: var(--red);
+        transition: left 0.4s var(--ease), right 0.4s var(--ease);
+    }
+    .cm-btn:hover::after { left: 0; right: 0; }
+    .cm-btn.active { color: var(--red); }
+    .cm-btn.active::after { left: 0; right: 0; background: var(--red); }
+
+    .cm-footer {
+        position: absolute; bottom: 36px;
+        font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase;
+        color: #ccc; text-align: center;
+    }
+
+    /* ══════════════════════════════════════════
+       HERO — 100VH CINEMA
+    ══════════════════════════════════════════ */
+    #hero {
+        height: 100vh; width: 100%;
+        position: relative; overflow: hidden;
+        background: var(--black);
+    }
+
+    .hero-layer-bg {
+        position: absolute; inset: 0;
+        background: url('store_entrance.jpg.jpeg') center / cover no-repeat;
+        opacity: 0;
+        animation: bgFadeIn 0.9s 0.3s forwards, heroZoom 35s 1.2s infinite alternate ease-in-out;
+        will-change: transform;
+    }
+    @keyframes bgFadeIn { to { opacity: 0.42; } }
+    @keyframes heroZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
+
+    .hero-layer-grad {
+        position: absolute; inset: 0;
+        background:
+            linear-gradient(180deg, rgba(10,10,10,0.25) 0%, transparent 35%, transparent 55%, rgba(10,10,10,0.75) 100%),
+            radial-gradient(ellipse at 20% 50%, transparent 50%, rgba(10,10,10,0.4) 100%);
+    }
+
+    .hero-layer-text {
+        position: absolute; inset: 0; z-index: 2;
+        display: flex; align-items: center; justify-content: flex-start;
+        padding: 0 11%;
+        padding-top: var(--nav-h);
+    }
+    .hero-text-inner { max-width: 580px; }
+
+    .hero-eyebrow {
+        font-size: 0.66rem; font-weight: 500; letter-spacing: 5px; text-transform: uppercase;
+        color: rgba(255,255,255,0.5); margin-bottom: 32px;
+        display: flex; align-items: center; gap: 16px;
+        opacity: 0; animation: textFadeUp 0.7s 0.8s var(--ease) forwards;
+    }
+    .hero-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--red); }
+
+    .hero-lines { overflow: visible; }
+    .hero-line { overflow: hidden; display: block; }
+    .hero-line-word {
+        display: block;
+        font-family: var(--f-display);
+        font-size: clamp(5rem, 10vw, 9.5rem);
+        font-weight: 300;
+        color: white;
+        line-height: 0.92;
+        letter-spacing: -2px;
+        transform: translateY(105%);
+        animation: wordReveal 1.1s var(--ease) forwards;
+    }
+    .hero-line:nth-child(1) .hero-line-word { animation-delay: 1.0s; }
+    .hero-line:nth-child(2) .hero-line-word { animation-delay: 1.3s; font-style: italic; color: rgba(255,255,255,0.75); }
+    @keyframes wordReveal { to { transform: translateY(0); } }
+
+    /* Red underline grows from center */
+    .hero-red-line {
+        display: block; width: 0; height: 3px; background: var(--red);
+        margin-top: 28px; margin-bottom: 40px;
+        animation: redLineGrow 0.8s 2.0s var(--ease) forwards;
+    }
+    @keyframes redLineGrow { to { width: 80px; } }
+
+    .hero-desc {
+        font-size: 0.88rem; font-weight: 300; color: rgba(255,255,255,0.5);
+        max-width: 260px; line-height: 1.85;
+        opacity: 0; animation: textFadeUp 0.8s 1.9s var(--ease) forwards;
+    }
+    @keyframes textFadeUp { to { opacity: 1; transform: translateY(0); } }
+
+    /* Bottom right CTA */
+    .hero-bottom-right {
+        position: absolute; bottom: 52px; right: 7%; z-index: 3;
+        opacity: 0; animation: textFadeUp 0.8s 2.2s var(--ease) forwards;
+    }
+    .hero-cta {
+        display: inline-flex; align-items: center; gap: 16px;
+        padding: 16px 36px;
+        border: 1px solid rgba(255,255,255,0.35);
+        color: white; font-size: 0.7rem; font-weight: 600;
+        letter-spacing: 3.5px; text-transform: uppercase;
+        text-decoration: none; cursor: none;
+        transition: background 0.5s var(--ease), border-color 0.5s, color 0.3s, transform 0.5s var(--ease);
+        position: relative; overflow: hidden;
+    }
+    .hero-cta::before {
+        content: ''; position: absolute; inset: 0;
+        background: var(--red);
+        transform: scaleX(0); transform-origin: left;
+        transition: transform 0.55s var(--ease);
+    }
+    .hero-cta:hover::before { transform: scaleX(1); }
+    .hero-cta:hover { border-color: var(--red); color: white; }
+    .hero-cta span { position: relative; z-index: 1; }
+    .hero-cta .arr { transition: transform 0.4s var(--ease); position: relative; z-index: 1; }
+    .hero-cta:hover .arr { transform: translateX(6px); }
+
+    /* Scroll pulse */
+    .hero-scroll {
+        position: absolute; bottom: 54px; left: 50%; transform: translateX(-50%);
+        z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 10px;
+        opacity: 0; animation: textFadeUp 0.6s 2.7s var(--ease) forwards;
+    }
+    .scroll-text { font-size: 0.58rem; letter-spacing: 4px; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+    .scroll-line { width: 1px; height: 44px; background: linear-gradient(rgba(255,255,255,0.4), transparent); animation: scrollPulse 2.2s ease-in-out infinite; }
+    @keyframes scrollPulse { 0%,100%{opacity:0.3;transform:scaleY(1)} 50%{opacity:1;transform:scaleY(1.4)} }
+
+    /* ══════════════════════════════════════════
+       STORYTELLING SECTIONS
+    ══════════════════════════════════════════ */
+
+    /* SECTION 1 — STATEMENT */
+    .story-statement {
+        background: var(--white);
+        min-height: 80vh;
+        display: flex; align-items: center; justify-content: center;
+        padding: 120px 7%;
+        text-align: center;
+    }
+    .stmt-inner { max-width: 720px; }
+    .stmt-tag {
+        font-size: 0.62rem; font-weight: 600; letter-spacing: 5px; text-transform: uppercase;
+        color: var(--red); margin-bottom: 48px;
+        display: flex; align-items: center; justify-content: center; gap: 16px;
+    }
+    .stmt-tag::before, .stmt-tag::after { content: ''; display: block; width: 28px; height: 1px; background: var(--red); }
+    .stmt-title {
+        font-family: var(--f-display);
+        font-size: clamp(2.8rem, 6vw, 5.5rem);
+        font-weight: 300; line-height: 1.05;
+        letter-spacing: -1px; color: var(--black);
+        margin-bottom: 40px;
+    }
+    .stmt-title em { font-style: italic; }
+    .stmt-body {
+        font-size: 1rem; font-weight: 300; color: var(--grey); line-height: 1.9; max-width: 520px; margin: 0 auto;
+    }
+
+    /* SECTION 2 — RED LINE */
+    .story-red-moment {
+        padding: 0 7%; background: var(--white);
+        display: flex; align-items: center; justify-content: center;
+        height: 120px;
+    }
+    .red-line-bar {
+        height: 1px; background: var(--red);
+        width: 0; transition: width 1.4s var(--ease);
+        max-width: 100%;
+    }
+    .red-line-bar.in-view { width: 100%; }
+
+    /* SECTION 3 — IMAGE REVEAL */
+    .story-image {
+        height: 72vh; min-height: 500px;
+        position: relative; overflow: hidden;
+        background: var(--black);
+    }
+    .story-img-inner {
+        position: absolute; inset: -15%;
+        background: url('store_entrance.jpg.jpeg') center / cover no-repeat;
+        opacity: 0;
+        transform: translateY(60px) scale(1.08);
+        transition: opacity 1.1s var(--ease), transform 1.4s var(--ease);
+        will-change: transform;
+    }
+    .story-img-inner.in-view { opacity: 0.52; transform: translateY(0) scale(1.08); }
+
+    .story-img-text {
+        position: absolute; inset: 0; z-index: 2;
+        display: flex; align-items: flex-end; justify-content: flex-start;
+        padding: 60px 7%;
+    }
+    .story-img-caption {
+        font-family: var(--f-display);
+        font-size: clamp(1.4rem, 3vw, 2.2rem);
+        font-weight: 300; font-style: italic;
+        color: white; max-width: 500px; line-height: 1.3;
+        opacity: 0; transform: translateY(20px);
+        transition: opacity 0.9s 0.3s var(--ease), transform 0.9s 0.3s var(--ease);
+    }
+    .story-image.in-view .story-img-caption { opacity: 1; transform: translateY(0); }
+
+    /* ══════════════════════════════════════════
+       SHOP SECTION — CINEMA GALLERY
+    ══════════════════════════════════════════ */
+    #shop { background: var(--soft); padding-top: 100px; }
+
+    .shop-head {
+        padding: 0 6% 60px;
+        display: flex; align-items: flex-end; justify-content: space-between;
+        border-bottom: 1px solid var(--divider);
+        margin-bottom: 60px;
+    }
+    .shop-eyebrow { font-size: 0.62rem; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--grey); margin-bottom: 12px; }
+    .shop-title {
+        font-family: var(--f-display);
+        font-size: clamp(2.2rem, 4vw, 3.5rem);
+        font-weight: 400; letter-spacing: -0.5px; color: var(--black); line-height: 1;
+        position: relative; display: inline-block; padding-bottom: 16px;
+    }
+    /* Animated red underline on heading */
+    .shop-title::after {
+        content: ''; position: absolute; bottom: 0; left: 50%; right: 50%;
+        height: 2px; background: var(--red);
+        transition: left 0.7s var(--ease), right 0.7s var(--ease);
+    }
+    .shop-title:hover::after { left: 0; right: 0; }
+    .shop-count { font-size: 0.8rem; color: #ccc; letter-spacing: 1px; }
+
+    /* SEARCH */
+    .search-wrap { padding: 0 6%; margin-bottom: 40px; }
+    .search-inner { position: relative; max-width: 480px; }
+    .search-input {
+        width: 100%; padding: 13px 0 13px 36px;
+        background: transparent; border: none; border-bottom: 1px solid var(--divider);
+        font-family: var(--f-body); font-size: 0.9rem; color: var(--black);
+        outline: none; letter-spacing: 0.2px; cursor: none;
+        transition: border-color 0.4s;
+    }
+    .search-input::placeholder { color: #ccc; }
+    .search-input:focus { border-bottom-color: var(--red); }
+    .search-icon { position: absolute; left: 0; top: 50%; transform: translateY(-50%); color: #ccc; font-size: 0.8rem; }
+
+    /* SUB PILLS */
+    .sub-wrap { padding: 0 6%; margin-bottom: 48px; }
+    .sub-filters { display: flex; gap: 10px; overflow-x: auto; scrollbar-width: none; }
+    .sub-filters::-webkit-scrollbar { display: none; }
+    .sub-pill {
+        padding: 8px 24px; border: 1px solid var(--divider);
+        background: var(--white); color: var(--grey);
+        font-family: var(--f-body); font-size: 0.76rem; font-weight: 500; letter-spacing: 0.5px;
+        cursor: none; white-space: nowrap;
+        transition: all 0.4s var(--ease);
+    }
+    .sub-pill:hover { border-color: var(--black); color: var(--black); }
+    .sub-pill.active { background: var(--black); color: var(--white); border-color: var(--black); }
+
+    /* PRODUCT GRID */
+    .product-grid {
+        padding: 0 6% 120px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 60px;
+        transition: opacity 0.5s var(--ease);
+    }
+    .product-grid.fading { opacity: 0; }
+
+    /* PRODUCT CARD */
+    .product-card {
+        background: var(--white);
+        position: relative; overflow: hidden; cursor: none;
+        border: none;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.03);
+        opacity: 0; transform: translateY(24px);
+        transition:
+            opacity 0.7s var(--ease),
+            transform 0.7s var(--ease),
+            box-shadow 0.7s var(--ease);
+    }
+    .product-card:hover {
+        box-shadow: 0 24px 72px rgba(0,0,0,0.09);
+        transform: translateY(-8px) !important;
+    }
+
+    .p-img-box {
+        height: 320px; background: var(--soft);
+        display: flex; align-items: center; justify-content: center;
+        overflow: hidden; position: relative;
+    }
+    .p-img-box img {
+        max-width: 76%; max-height: 80%; object-fit: contain;
+        transition: transform 0.8s var(--ease);
+        filter: drop-shadow(0 8px 20px rgba(0,0,0,0.06));
+    }
+    .product-card:hover .p-img-box img { transform: scale(1.05); }
+
+    /* WHITE OVERLAY + RED VIEW TEXT */
+    .p-overlay {
+        position: absolute; inset: 0;
+        background: rgba(255,255,255,0);
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.8s var(--ease);
+    }
+    .p-view-text {
+        font-family: var(--f-body);
+        font-size: 0.7rem; font-weight: 700;
+        letter-spacing: 6px; text-transform: uppercase;
+        color: var(--red);
+        opacity: 0; transform: translateY(10px);
+        transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    }
+    .product-card:hover .p-overlay { background: rgba(255,255,255,0.92); }
+    .product-card:hover .p-view-text { opacity: 1; transform: translateY(0); }
+
+    /* Red bottom accent */
+    .p-bar { position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--red); transition: width 0.7s var(--ease); }
+    .product-card:hover .p-bar { width: 100%; }
+
+    .p-meta { padding: 22px 24px 26px; }
+    .p-cat { font-size: 0.6rem; font-weight: 600; letter-spacing: 3.5px; text-transform: uppercase; color: var(--grey); margin-bottom: 10px; }
+    .p-name {
+        font-family: var(--f-display);
+        font-size: 1.2rem; font-weight: 500; color: var(--black);
+        line-height: 1.3; margin-bottom: 14px;
+        height: 2.6em; overflow: hidden;
+        display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+        transition: transform 0.5s var(--ease);
+    }
+    .product-card:hover .p-name { transform: translateY(-2px); }
+    .p-price { font-size: 1.05rem; font-weight: 600; color: var(--black); letter-spacing: 0.3px; }
+
+    /* NEW BADGE */
+    .badge-new {
+        position: absolute; top: 16px; left: 16px; z-index: 5;
+        background: var(--red); color: white;
+        font-size: 0.58rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+        padding: 5px 12px;
+        animation: badgePulse 3.5s ease-in-out infinite;
+    }
+    @keyframes badgePulse {
+        0%,100% { box-shadow: 0 0 0 0 rgba(226,27,36,0); }
+        50%      { box-shadow: 0 0 0 8px rgba(226,27,36,0); }
+    }
+
+    /* SKELETON */
+    .skeleton { background: linear-gradient(90deg, #f0f0f0 25%, #f7f7f7 50%, #f0f0f0 75%); background-size: 200%; animation: skel 1.8s infinite; }
+    @keyframes skel { to { background-position: -200% 0; } }
+
+    /* ══════════════════════════════════════════
+       STATS STRIP
+    ══════════════════════════════════════════ */
+    .stats-strip { background: var(--black); padding: 60px 7%; display: flex; align-items: center; justify-content: center; gap: 80px; }
+    .stat-item { text-align: center; }
+    .stat-n { font-family: var(--f-display); font-size: 3.2rem; font-weight: 300; color: var(--white); line-height: 1; }
+    .stat-l { font-size: 0.6rem; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-top: 10px; }
+    .stat-sep { width: 1px; height: 50px; background: rgba(255,255,255,0.08); }
+
+    /* ══════════════════════════════════════════
+       ABOUT SECTION
+    ══════════════════════════════════════════ */
+    #about { background: var(--white); padding: 130px 7%; border-top: 1px solid var(--divider); }
+    .about-inner { max-width: 900px; }
+    .about-tag { font-size: 0.62rem; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--red); margin-bottom: 20px; }
+    .about-title {
+        font-family: var(--f-display);
+        font-size: clamp(2.5rem, 5vw, 4.5rem);
+        font-weight: 300; letter-spacing: -1px; color: var(--black);
+        line-height: 1.05; margin-bottom: 48px;
+    }
+    .about-title em { font-style: italic; }
+    /* Red underline animation on heading */
+    .about-title-wrap { display: inline-block; position: relative; padding-bottom: 20px; }
+    .about-title-wrap::after {
+        content: ''; position: absolute; bottom: 0; left: 50%; right: 50%;
+        height: 2px; background: var(--red);
+        transition: left 0.8s var(--ease), right 0.8s var(--ease);
+    }
+    .about-title-wrap.in-view::after { left: 0; right: 0; }
+    .about-body { font-size: 1.05rem; font-weight: 300; color: var(--grey); line-height: 1.9; max-width: 600px; }
+
+    /* ══════════════════════════════════════════
+       LOCATION SECTION
+    ══════════════════════════════════════════ */
+    .loc-section { background: var(--soft); padding: 130px 7%; display: grid; grid-template-columns: 1fr 1.1fr; gap: 100px; align-items: center; border-top: 1px solid var(--divider); }
+    .loc-tag { font-size: 0.62rem; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--red); margin-bottom: 14px; }
+    .loc-title { font-family: var(--f-display); font-size: clamp(2.5rem, 4vw, 3.8rem); font-weight: 300; letter-spacing: -0.5px; line-height: 1.05; color: var(--black); margin-bottom: 52px; }
+    .loc-item { display: flex; gap: 20px; align-items: flex-start; padding: 26px; background: var(--white); border: none; box-shadow: 0 8px 32px rgba(0,0,0,0.04); margin-bottom: 16px; transition: all 0.5s var(--ease); }
+    .loc-item:hover { transform: translateX(5px); box-shadow: 0 16px 48px rgba(0,0,0,0.07); }
+    .loc-icon { width: 42px; height: 42px; background: var(--black); color: white; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; transition: background 0.4s; }
+    .loc-item:hover .loc-icon { background: var(--red); }
+    .loc-text { font-size: 0.95rem; color: var(--black); line-height: 1.65; padding-top: 3px; }
+    .loc-label { display: block; font-size: 0.58rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--grey); margin-bottom: 6px; }
+    .map-frame { width: 100%; height: 460px; overflow: hidden; border: none; box-shadow: 0 40px 100px rgba(0,0,0,0.08); }
+    .map-frame iframe { width: 100%; height: 100%; border: 0; filter: grayscale(25%); }
+
+    /* ══════════════════════════════════════════
+       MODAL — EDITORIAL WHITE
+    ══════════════════════════════════════════ */
+    #modal {
+        position: fixed; inset: 0;
+        background: rgba(10,10,10,0.85);
+        backdrop-filter: blur(14px);
+        display: none; justify-content: center; align-items: center;
+        z-index: 5000; opacity: 0; transition: opacity 0.5s var(--ease);
+    }
+    #modal.open { display: flex; opacity: 1; }
+
+    .modal-box {
+        width: 92%; max-width: 980px; height: 86vh; max-height: 680px;
+        display: flex; background: var(--white);
+        box-shadow: 0 50px 120px rgba(0,0,0,0.35);
+        transform: translateY(24px) scale(0.96);
+        transition: transform 0.7s var(--ease), opacity 0.5s;
+        opacity: 0;
+    }
+    #modal.open .modal-box { transform: translateY(0) scale(1); opacity: 1; }
+
+    .modal-img-col {
+        flex: 1.4; background: var(--soft);
+        display: flex; align-items: center; justify-content: center; padding: 60px;
+        position: relative; overflow: hidden;
+    }
+    .modal-img-col img { max-width: 88%; max-height: 88%; object-fit: contain; filter: drop-shadow(0 16px 40px rgba(0,0,0,0.08)); }
+
+    .modal-info-col {
+        flex: 1; padding: 64px 52px;
+        display: flex; flex-direction: column; justify-content: center;
+        border-left: none;
+        box-shadow: -1px 0 0 0 rgba(0,0,0,0.04);
+        overflow-y: auto; position: relative;
+    }
+    .m-close {
+        position: absolute; top: 22px; right: 22px;
+        width: 36px; height: 36px;
+        display: flex; align-items: center; justify-content: center;
+        cursor: none; color: #ccc; font-size: 0.85rem; border: none; background: none;
+        transition: color 0.35s var(--ease), transform 0.4s var(--ease);
+    }
+    .m-close:hover { color: var(--red); transform: rotate(90deg); }
+
+    .m-cat { font-size: 0.62rem; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--grey); margin-bottom: 16px; }
+    .m-name { font-family: var(--f-display); font-size: 2.2rem; font-weight: 400; color: var(--black); line-height: 1.05; margin-bottom: 24px; letter-spacing: -0.5px; }
+    /* Red divider under title */
+    .m-red-line { width: 36px; height: 2px; background: var(--red); margin-bottom: 24px; }
+    .m-price { font-size: 1.9rem; font-weight: 600; color: var(--black); margin-bottom: 40px; letter-spacing: -0.5px; }
+    .m-tagline { font-family: var(--f-display); font-style: italic; font-size: 0.95rem; color: var(--grey); margin-bottom: 32px; line-height: 1.85; }
+    .m-info { margin-bottom: 38px; }
+    .m-row { display: flex; align-items: flex-start; gap: 12px; font-size: 0.85rem; color: var(--grey); margin-bottom: 10px; }
+    .m-dot { width: 4px; height: 4px; border-radius: 50%; background: #ddd; flex-shrink: 0; margin-top: 8px; }
+    .m-row strong { color: var(--black); font-weight: 600; }
+
+    .m-action {
+        width: 100%; padding: 18px;
+        background: var(--black); color: white;
+        font-family: var(--f-body); font-size: 0.72rem; font-weight: 600;
+        letter-spacing: 3.5px; text-transform: uppercase;
+        border: none; cursor: none;
+        transition: all 0.5s var(--ease);
+        transform: scale(1);
+        position: relative; overflow: hidden;
+    }
+    .m-action::before {
+        content: ''; position: absolute; inset: 0;
+        background: var(--red); transform: scaleX(0); transform-origin: left;
+        transition: transform 0.5s var(--ease);
+    }
+    .m-action:hover::before { transform: scaleX(1); }
+    .m-action:hover { transform: scale(1.02); }
+    .m-action span { position: relative; z-index: 1; }
+
+    /* ══════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════ */
+    footer { background: var(--black); padding: 80px 7% 48px; border-top: 1px solid rgba(255,255,255,0.04); }
+    .ft-grid { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 40px; padding-bottom: 56px; border-bottom: 1px solid rgba(255,255,255,0.05); margin-bottom: 40px; }
+    .ft-logo { font-family: var(--f-display); font-size: 2rem; font-weight: 400; letter-spacing: 8px; text-transform: uppercase; color: white; line-height: 1; }
+    .ft-sub { font-size: 0.58rem; font-weight: 500; letter-spacing: 4px; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-top: 10px; }
+    .ft-tagline { font-family: var(--f-display); font-style: italic; font-size: 1.05rem; color: rgba(255,255,255,0.18); text-align: center; line-height: 1.6; }
+    .ft-social { display: flex; gap: 10px; justify-content: flex-end; }
+    .ft-soc { width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.35); text-decoration: none; font-size: 0.85rem; cursor: none; transition: 0.3s; }
+    .ft-soc:hover { border-color: var(--red); color: var(--red); }
+    .ft-bottom { display: flex; justify-content: space-between; font-size: 0.7rem; color: rgba(255,255,255,0.18); letter-spacing: 1px; }
+
+    /* ══════════════════════════════════════════
+       INERTIA SMOOTH SCROLL WRAPPER
+    ══════════════════════════════════════════ */
+    #smooth-wrapper { position: fixed; inset: 0; overflow: hidden; z-index: 0; }
+    #smooth-content { position: absolute; width: 100%; will-change: transform; }
+
+    /* ══════════════════════════════════════════
+       AMBIENT BODY LIGHT — GLOBAL BREATH
+    ══════════════════════════════════════════ */
+    body::before {
+        content: '';
+        position: fixed; inset: 0;
+        background: radial-gradient(circle at 50% 0%, rgba(0,0,0,0.025), transparent 60%);
+        animation: ambientMove 18s ease-in-out infinite alternate;
+        pointer-events: none; z-index: 1;
+    }
+    @keyframes ambientMove {
+        from { transform: translateY(-20px); }
+        to   { transform: translateY(20px); }
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION GRADIENT FADES — APPLE SCENE FLOW
+    ══════════════════════════════════════════ */
+    .story-statement, .story-image, #shop, #about { position: relative; }
+    .story-statement::after, #about::after {
+        content: ''; position: absolute; bottom: -1px; left: 0;
+        width: 100%; height: 80px;
+        background: linear-gradient(transparent, var(--white));
+        pointer-events: none; z-index: 2;
+    }
+
+    /* ══════════════════════════════════════════
+       3D ILLUSION — PERSPECTIVE CONTAINER
+    ══════════════════════════════════════════ */
+    .p-3d-wrap {
+        perspective: 1200px;
+        width: 100%; height: 100%;
+        display: flex; align-items: center; justify-content: center;
+        position: relative;
+    }
+    .p-3d-inner {
+        transform-style: preserve-3d;
+        position: relative;
+        display: flex; align-items: center; justify-content: center;
+        width: 100%; height: 100%;
+        animation: autoFloat 14s ease-in-out infinite alternate;
+        transition: transform 0.9s var(--ease);
+    }
+    @keyframes autoFloat {
+        from { transform: rotateX(0deg) rotateY(-1.5deg) translateY(-5px); }
+        to   { transform: rotateX(0.8deg) rotateY(1.5deg) translateY(5px); }
+    }
+    .p-3d-inner img {
+        max-width: 75%; max-height: 78%; object-fit: contain;
+        transform: translateZ(30px);
+        animation: shadowBreath 6s ease-in-out infinite alternate;
+    }
+    @keyframes shadowBreath {
+        from { filter: drop-shadow(0 14px 20px rgba(0,0,0,0.05)); }
+        to   { filter: drop-shadow(0 22px 36px rgba(0,0,0,0.11)); }
+    }
+    /* Fake studio light reflection layer */
+    .p-light {
+        position: absolute; inset: 0; z-index: 2;
+        background: radial-gradient(circle at 65% 25%, rgba(255,255,255,0.2), transparent 58%);
+        opacity: 0.28; pointer-events: none;
+        mix-blend-mode: soft-light;
+        transition: opacity 0.7s var(--ease);
+    }
+    .product-card:hover .p-light { opacity: 0.52; }
+    /* Pause auto-float on hover — let mouse take over */
+    .product-card:hover .p-3d-inner { animation-play-state: paused; }
+
+    /* ══════════════════════════════════════════
+       MODAL — CINEMA FLOAT ANIMATION
+    ══════════════════════════════════════════ */
+    @keyframes cinemaFadeIn {
+        from { opacity: 0; transform: scale(0.985); filter: blur(4px); }
+        to   { opacity: 1; transform: scale(1);     filter: blur(0);   }
+    }
+    @keyframes modalFloat {
+        from { transform: translateY(-5px) scale(1.02); }
+        to   { transform: translateY(6px)  scale(1.04); }
+    }
+    #modal.open .modal-img-col {
+        animation: cinemaFadeIn 1.1s var(--ease) both;
+    }
+    #modal.open .modal-img-col img {
+        animation: modalFloat 10s ease-in-out infinite alternate;
+    }
+
+    /* ══════════════════════════════════════════
+       RESOLUTION SECTION — STAGE 5: CALM ENDING
+    ══════════════════════════════════════════ */
+    .resolution-section {
+        background: var(--black);
+        padding: 160px 7% 180px;
+        text-align: center;
+        position: relative; overflow: hidden;
+    }
+    .resolution-section::before {
+        content: ''; position: absolute; inset: 0;
+        background: radial-gradient(ellipse at 50% 100%, rgba(226,27,36,0.06), transparent 65%);
+        pointer-events: none;
+    }
+    .res-eyebrow {
+        font-size: 0.6rem; font-weight: 600; letter-spacing: 5px; text-transform: uppercase;
+        color: rgba(255,255,255,0.18); margin-bottom: 52px;
+        display: flex; align-items: center; justify-content: center; gap: 24px;
+    }
+    .res-eyebrow::before, .res-eyebrow::after {
+        content: ''; display: block; flex: 1; max-width: 60px; height: 1px;
+        background: rgba(255,255,255,0.08);
+    }
+    .res-title {
+        font-family: var(--f-display);
+        font-size: clamp(3rem, 7vw, 7.5rem);
+        font-weight: 300; font-style: italic;
+        color: rgba(255,255,255,0.8);
+        line-height: 1.05; letter-spacing: -2px;
+        margin-bottom: 56px;
+    }
+    .res-rule {
+        width: 0; height: 1px; background: var(--red);
+        margin: 0 auto 52px;
+        transition: width 1.6s var(--ease);
+    }
+    .res-rule.in-view { width: 56px; }
+    .res-body {
+        font-size: 0.78rem; font-weight: 400; color: rgba(255,255,255,0.22);
+        letter-spacing: 3.5px; text-transform: uppercase; line-height: 2.2;
+    }
+
+    /* ══════════════════════════════════════════
+       SCROLL REVEAL SYSTEM — CINEMA DEPTH
+    ══════════════════════════════════════════ */
+    .reveal {
+        opacity: 0;
+        transform: translateY(36px) scale(0.98);
+        filter: blur(4px);
+        transition: opacity 0.9s var(--ease), transform 0.9s var(--ease), filter 0.9s var(--ease);
+    }
+    .reveal.in-view { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+    .r-d1 { transition-delay: 0.12s; }
+    .r-d2 { transition-delay: 0.24s; }
+    .r-d3 { transition-delay: 0.36s; }
+
+    /* ══════════════════════════════════════════
+       MOBILE
+    ══════════════════════════════════════════ */
+    @media (max-width: 1080px) {
+        #hdr { padding: 0 20px; }
+        .hdr-left .hdr-nav:not(:first-child) { display: none; }
+        .hdr-menu-btn { display: flex; }
+        .product-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; padding: 0 4% 80px; }
+        .p-img-box { height: 220px; }
+        .stats-strip { gap: 36px; }
+        .loc-section { grid-template-columns: 1fr; padding: 80px 6%; gap: 60px; }
+        .map-frame { height: 320px; }
+        .modal-box { flex-direction: column; height: 95vh; max-height: 95vh; }
+        .modal-img-col { height: 300px; padding: 36px; }
+        .modal-info-col { padding: 32px 28px; border-left: none; border-top: none; box-shadow: 0 -1px 0 0 rgba(0,0,0,0.04); }
+        .m-name { font-size: 1.7rem; }
+        .ft-grid { grid-template-columns: 1fr; gap: 28px; text-align: center; }
+        .ft-social { justify-content: center; }
+        .ft-bottom { flex-direction: column; gap: 10px; text-align: center; }
+        #smooth-wrapper { position: static; overflow: visible; }
+        #smooth-content { position: static; transform: none !important; }
+        body::before { display: none; }
+        .p-3d-inner { animation: none; }
+        .p-3d-inner img { transform: none; animation: none; }
+        #modal.open .modal-img-col img { animation: none; }
+        #cur-dot, #cur-ring { display: none; }
+        * { cursor: auto !important; }
+        .cm-brand { left: 20px; }
+        .cm-close { right: 20px; }
+    }
+
+    @media (max-width: 640px) {
+        .product-grid { gap: 14px; }
+        .p-img-box { height: 190px; }
+        .stat-sep { display: none; }
+        .stats-strip { gap: 20px; flex-wrap: wrap; }
+        .shop-head { flex-direction: column; align-items: flex-start; gap: 12px; padding: 0 4% 48px; }
+        .search-wrap, .sub-wrap { padding: 0 4%; }
+    }
+    </style>
+</head>
+<body>
+
+<!-- ═══ FIXED UI LAYER (outside smooth wrapper so CSS transforms don't break position:fixed) ═══ -->
+<div id="cinema-transition"></div>
+
+<div id="cur-dot"></div>
+<div id="cur-ring"></div>
+
+<div id="cinema-menu">
+    <div class="cm-brand">Miniso</div>
+    <div class="cm-close" onclick="closeMenu()"><i class="fas fa-times"></i></div>
+    <ul class="cm-list" id="cmList">
+        <li class="cm-item"><button class="cm-btn active" onclick="menuSelectCat('All')">All Collection</button></li>
+    </ul>
+    <div class="cm-footer">Miniso Jayanagar &nbsp;·&nbsp; Official Flagship</div>
+</div>
+
+<div id="modal">
+    <div class="modal-box">
+        <div class="modal-img-col">
+            <img id="mImg" src="" alt="">
+        </div>
+        <div class="modal-info-col">
+            <div class="m-close" onclick="closeModal()"><i class="fas fa-times"></i></div>
+            <div class="m-cat" id="mCat">CATEGORY</div>
+            <div class="m-name" id="mName">Product Name</div>
+            <div class="m-red-line"></div>
+            <div class="m-price" id="mPrice">₹0</div>
+            <div class="m-tagline">Crafted for the details that make every day feel intentional.</div>
+            <div class="m-info">
+                <div class="m-row"><span class="m-dot"></span><span><strong>Collection:</strong>&nbsp;<span id="mSub">—</span></span></div>
+                <div class="m-row"><span class="m-dot"></span><span><strong>SKU:</strong>&nbsp;<span id="mSku">—</span></span></div>
+                <div class="m-row"><span class="m-dot"></span><span><strong>Barcode:</strong>&nbsp;<span id="mBarcode">—</span></span></div>
+            </div>
+            <button class="m-action" onclick="closeModal()">
+                <span>Available at Flagship Store</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<header id="hdr" class="dark-mode">
+    <div class="hdr-left">
+        <button class="hdr-menu-btn" onclick="openMenu()">
+            <div class="hdr-lines"><span></span><span></span></div>
+            <span>Menu</span>
+        </button>
+        <a href="#about" class="hdr-nav">About</a>
+        <a href="#shop" class="hdr-nav">Collection</a>
+    </div>
+    <div class="hdr-center">
+        <div class="hdr-logo">Miniso</div>
+        <div class="hdr-sub">Jayanagar Flagship</div>
+    </div>
+    <div class="hdr-right">
+        <a href="https://www.instagram.com/miniso__jayanagar?igsh=MXBrN2N6cWp0dnp6Mg==" target="_blank" class="hdr-icon">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <div class="hdr-icon" onclick="document.querySelector('.search-input')?.focus();document.getElementById('shop')?.scrollIntoView({behavior:'smooth'});">
+            <i class="fas fa-search"></i>
+        </div>
+    </div>
+</header>
+<!-- ═══ END FIXED UI ═══ -->
+
+<!-- ═══ SMOOTH SCROLL WRAPPER — only scrollable content here ═══ -->
+<div id="smooth-wrapper">
+<div id="smooth-content">
+
+<!-- MARQUEE -->
+<div class="marquee-bar" style="display:none;"><!-- marquee removed for cinema mode --></div>
+
+<!-- HERO — 3 LAYERS -->
+<section id="hero">    <div class="hero-layer-bg"></div>
+    <div class="hero-layer-grad"></div>
+    <div class="hero-layer-text">
+        <div class="hero-text-inner">
+            <div class="hero-eyebrow">Official Flagship &nbsp;·&nbsp; Bengaluru</div>
+
+            <div class="hero-lines">
+                <span class="hero-line"><span class="hero-line-word">Elevate</span></span>
+                <span class="hero-line"><span class="hero-line-word">Everyday.</span></span>
+            </div>
+
+            <span class="hero-red-line"></span>
+
+            <p class="hero-desc">Premium lifestyle products, curated for those who notice the details in everything.</p>
+        </div>
+    </div>
+
+    <div class="hero-bottom-right">
+        <a href="#shop" class="hero-cta">
+            <span>Explore Collection</span>
+            <span class="arr">→</span>
+        </a>
+    </div>
+
+    <div class="hero-scroll">
+        <div class="scroll-text">Scroll</div>
+        <div class="scroll-line"></div>
+    </div>
+</section>
+
+<!-- STORY — SECTION 1: STATEMENT -->
+<section class="story-statement">
+    <div class="stmt-inner">
+        <div class="stmt-tag reveal">Our Philosophy</div>
+        <h2 class="stmt-title reveal r-d1">
+            Designed For<br><em>Everyday Luxury.</em>
+        </h2>
+        <p class="stmt-body reveal r-d2">
+            We believe exceptional design shouldn't be a privilege. Miniso Jayanagar brings the quiet confidence of premium craftsmanship to Bengaluru — making every object in your day feel intentional, considered, and beautiful.
+        </p>
+    </div>
+</section>
+
+<!-- STORY — SECTION 2: RED LINE -->
+<div class="story-red-moment">
+    <div class="red-line-bar" id="redLine"></div>
+</div>
+
+<!-- STORY — SECTION 3: IMAGE REVEAL -->
+<div class="story-image" id="storyImg">
+    <div class="story-img-inner" id="storyImgInner"></div>
+    <div class="story-img-text">
+        <div class="story-img-caption" id="storyCaption">
+            "The joy of living beautifully is in the details that others overlook."
+        </div>
+    </div>
+</div>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+    <div class="stat-item reveal"><div class="stat-n">500+</div><div class="stat-l">Products</div></div>
+    <div class="stat-sep reveal r-d1"></div>
+    <div class="stat-item reveal r-d1"><div class="stat-n">10+</div><div class="stat-l">Collections</div></div>
+    <div class="stat-sep reveal r-d2"></div>
+    <div class="stat-item reveal r-d2"><div class="stat-n">7</div><div class="stat-l">Days Open</div></div>
+    <div class="stat-sep reveal r-d3"></div>
+    <div class="stat-item reveal r-d3"><div class="stat-n">★ 4.8</div><div class="stat-l">Customer Rating</div></div>
+</div>
+
+<!-- SHOP SECTION -->
+<section id="shop">
+    <div class="shop-head">
+        <div>
+            <div class="shop-eyebrow reveal">Curated For You</div>
+            <div class="shop-title reveal r-d1">The Collection</div>
+        </div>
+        <div class="shop-count reveal r-d1" id="countDisplay"></div>
+    </div>
+
+    <div class="search-wrap reveal">
+        <div class="search-inner">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="searchInput" class="search-input" placeholder="Search the collection…">
+        </div>
+    </div>
+
+    <div class="sub-wrap">
+        <div class="sub-filters" id="subFilters" style="display:none;"></div>
+    </div>
+
+    <div class="product-grid" id="grid"></div>
+    <div id="sentinel" style="height:80px;"></div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+    <div class="about-tag reveal">Our Story</div>
+    <div class="about-title-wrap reveal r-d1" id="aboutTitleWrap">
+        <div class="about-title">Miniso<br><em>Jayanagar.</em></div>
+    </div>
+    <p class="about-body reveal r-d2">
+        Miniso Jayanagar is an official flagship store bringing premium lifestyle products, fashion accessories, and everyday essentials designed for a better life. Our carefully curated selection reflects the Japanese philosophy of simple, quality design that brings genuine joy.<br><br>
+        We believe that exceptional design shouldn't be a luxury — it should be an everyday experience.
+    </p>
+</section>
+
+<!-- LOCATION -->
+<div class="loc-section">
+    <div>
+        <div class="loc-tag reveal">Find Us</div>
+        <h2 class="loc-title reveal r-d1">Visit Our<br>Flagship<br>Store.</h2>
+
+        <div class="loc-item reveal r-d1">
+            <div class="loc-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="loc-text"><span class="loc-label">Address</span>123, 11th Main Rd, 4th Block,<br>Jayanagar, Bengaluru 560011</div>
+        </div>
+        <div class="loc-item reveal r-d2">
+            <div class="loc-icon"><i class="fas fa-phone-alt"></i></div>
+            <div class="loc-text"><span class="loc-label">Contact</span>72593 52730</div>
+        </div>
+        <div class="loc-item reveal r-d3">
+            <div class="loc-icon"><i class="fas fa-clock"></i></div>
+            <div class="loc-text"><span class="loc-label">Hours</span>Monday – Sunday &nbsp;·&nbsp; 10:00 AM – 9:30 PM</div>
+        </div>
+    </div>
+
+    <div class="reveal r-d1">
+        <div class="map-frame">
+            <iframe src="https://www.google.com/maps?q=MINISO%20Jayanagar%20Bengaluru&output=embed" allowfullscreen loading="lazy"></iframe>
+        </div>
+    </div>
+</div>
+
+<!-- RESOLUTION — STAGE 5: EMOTIONAL CLOSE -->
+<section class="resolution-section">
+    <div class="res-eyebrow reveal">Miniso Jayanagar</div>
+    <div class="res-title reveal r-d1">
+        Joy in Every<br>Detail.
+    </div>
+    <div class="res-rule" id="resRule"></div>
+    <div class="res-body reveal r-d2">
+        Official Flagship &nbsp;·&nbsp; Jayanagar, Bengaluru &nbsp;·&nbsp; 10 AM – 9:30 PM Daily
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="ft-grid">
+        <div>
+            <div class="ft-logo">Miniso</div>
+            <div class="ft-sub">Jayanagar · Official Flagship · Bengaluru</div>
+        </div>
+        <div class="ft-tagline">Design that brings<br>joy to every day.</div>
+        <div class="ft-social">
+            <a href="https://www.instagram.com/miniso__jayanagar?igsh=MXBrN2N6cWp0dnp6Mg==" target="_blank" class="ft-soc"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+    <div class="ft-bottom">
+        <span>© 2024 Miniso Jayanagar. All Rights Reserved.</span>
+        <span>Official Flagship · Bengaluru</span>
+    </div>
+</footer>
+</div><!-- /smooth-content -->
+</div><!-- /smooth-wrapper -->
+
+<script type="module">
+import { products } from "./products.js";
+
+/* ════════════════════════════
+   GLOBALS
+════════════════════════════ */
+const hdr = document.getElementById('hdr');
+
+/* ════════════════════════════
+   CURSOR
+════════════════════════════ */
+const dot  = document.getElementById('cur-dot');
+const ring = document.getElementById('cur-ring');
+let tx = 0, ty = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; });
+(function raf() {
+    rx += (tx - rx) * 0.1; ry += (ty - ry) * 0.1;
+    if(dot)  { dot.style.left  = tx + 'px'; dot.style.top  = ty + 'px'; }
+    if(ring) { ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; }
+    requestAnimationFrame(raf);
+})();
+document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cur-hover'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cur-hover'));
+});
+
+/* ════════════════════════════
+   CINEMA TRANSITION OVERLAY
+════════════════════════════ */
+const ct = document.getElementById('cinema-transition');
+function cinemaFlash(cb) {
+    ct.className = '';
+    ct.style.transform = 'translateY(100%)';
+    ct.getBoundingClientRect();
+    ct.classList.add('run-enter');
+    setTimeout(() => {
+        if(cb) cb();
+        ct.classList.remove('run-enter');
+        ct.getBoundingClientRect();
+        ct.classList.add('run-reveal');
+        setTimeout(() => { ct.classList.remove('run-reveal'); ct.style.transform = 'translateY(100%)'; }, 1700);
+    }, 750);
+}
+
+/* ════════════════════════════
+   PAGE ENTRY FLASH
+════════════════════════════ */
+window.addEventListener('DOMContentLoaded', () => {
+    ct.style.transform = 'translateY(0%)';
+    ct.getBoundingClientRect();
+    ct.classList.add('run-reveal');
+    setTimeout(() => { ct.classList.remove('run-reveal'); ct.style.transform = 'translateY(100%)'; }, 1300);
+});
+
+/* ════════════════════════════
+   HEADER SCROLL (mobile fallback — desktop handled by smoothLoop)
+════════════════════════════ */
+if (window.innerWidth < 900) {
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 80) { hdr.classList.replace('dark-mode', 'light-mode'); }
+        else { hdr.classList.replace('light-mode', 'dark-mode'); }
+    }, { passive: true });
+}
+
+/* ════════════════════════════
+   SCROLL REVEAL
+════════════════════════════ */
+const revObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+        if(e.isIntersecting) { e.target.classList.add('in-view'); revObs.unobserve(e.target); }
+    });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+
+/* About title underline */
+const aboutWrap = document.getElementById('aboutTitleWrap');
+if(aboutWrap) revObs.observe(aboutWrap);
+
+/* Red line bar */
+const redLine = document.getElementById('redLine');
+if(redLine) revObs.observe(redLine);
+
+/* Story image reveal */
+const storyImg = document.getElementById('storyImg');
+const storyImgInner = document.getElementById('storyImgInner');
+if(storyImg && storyImgInner) {
+    const imgObs = new IntersectionObserver(entries => {
+        if(entries[0].isIntersecting) {
+            storyImg.classList.add('in-view');
+            storyImgInner.classList.add('in-view');
+            document.getElementById('storyCaption')?.classList.add('in-view');
+        }
+    }, { threshold: 0.15 });
+    imgObs.observe(storyImg);
+}
+
+/* ════════════════════════════
+   FULLSCREEN CINEMA MENU
+════════════════════════════ */
+let menuOpen = false;
+window.openMenu = function() {
+    document.getElementById('cinema-menu').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    menuOpen = true;
+}
+window.closeMenu = function() {
+    document.getElementById('cinema-menu').classList.remove('open');
+    document.body.style.overflow = '';
+    menuOpen = false;
+}
+
+/* ════════════════════════════
+   STATE
+════════════════════════════ */
+let curCat = 'All', curSub = 'All', curSearch = '';
+let displayList = [], page = 1;
+const PER = 16;
+
+/* ════════════════════════════
+   BUILD CINEMA MENU CATEGORIES
+════════════════════════════ */
+function buildCinemaMenu() {
+    const list = document.getElementById('cmList');
+    const cats = [...new Set(products.map(p => p.cat?.trim()).filter(Boolean))].sort();
+    cats.forEach(cat => {
+        const li = document.createElement('li');
+        li.className = 'cm-item';
+        const btn = document.createElement('button');
+        btn.className = 'cm-btn';
+        btn.textContent = cat;
+        btn.onclick = () => menuSelectCat(cat);
+        li.appendChild(btn);
+        list.appendChild(li);
+    });
+}
+
+window.menuSelectCat = function(cat) {
+    closeMenu();
+    cinemaFlash(() => {
+        document.querySelectorAll('.cm-btn').forEach(b => { b.classList.toggle('active', b.textContent === cat || (cat === 'All' && b.textContent === 'All Collection')); });
+        curCat = cat; curSub = 'All';
+        buildSubFilters(cat);
+        filterRender();
+    });
+    setTimeout(() => document.getElementById('shop').scrollIntoView({ behavior: 'smooth' }), 300);
+}
+
+/* ════════════════════════════
+   SUB FILTERS
+════════════════════════════ */
+function buildSubFilters(cat) {
+    const c = document.getElementById('subFilters');
+    c.innerHTML = ''; c.style.display = 'none';
+    if(cat === 'All') return;
+    const subs = [...new Set(products.filter(p => p.cat === cat).map(p => p.subCat?.trim()).filter(Boolean))].sort();
+    if(!subs.length) return;
+    c.style.display = 'flex';
+    const allB = document.createElement('button');
+    allB.className = 'sub-pill active'; allB.textContent = 'View All';
+    allB.onclick = e => setSubCat('All', e);
+    c.appendChild(allB);
+    subs.forEach(sub => {
+        const b = document.createElement('button');
+        b.className = 'sub-pill'; b.textContent = sub;
+        b.onclick = e => setSubCat(sub, e);
+        c.appendChild(b);
+    });
+}
+window.setSubCat = function(sub, e) {
+    document.querySelectorAll('.sub-pill').forEach(b => b.classList.remove('active'));
+    if(e) e.target.classList.add('active');
+    curSub = sub; filterRender();
+}
+
+/* ════════════════════════════
+   OBSERVERS
+════════════════════════════ */
+const sentinelObs = new IntersectionObserver(es => { if(es[0].isIntersecting) loadMore(); }, { threshold: 0.1 });
+const cardObs = new IntersectionObserver(es => {
+    es.forEach(e => { if(e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; cardObs.unobserve(e.target); } });
+}, { threshold: 0.07 });
+
+/* ════════════════════════════
+   FILTER & RENDER
+════════════════════════════ */
+function filterRender() {
+    const grid = document.getElementById('grid');
+    grid.classList.add('fading');
+
+    setTimeout(() => {
+        displayList = products.filter(p => {
+            const cm = curCat === 'All' || p.cat?.trim() === curCat;
+            const sm = curSub === 'All' || p.subCat?.trim() === curSub;
+            const q = curSearch;
+            const s = `${p.name} ${p.cat||''} ${p.subCat||''} ${p.sku||''} ${p.barcode||''}`.toLowerCase();
+            return cm && sm && (!q || s.includes(q));
+        });
+        page = 1; grid.innerHTML = ''; grid.classList.remove('fading');
+
+        const cnt = document.getElementById('countDisplay');
+        if(cnt) cnt.textContent = `${displayList.length} Items`;
+
+        if(!displayList.length) {
+            grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:140px 0;font-family:var(--f-display);font-size:1.8rem;font-style:italic;color:#ccc;">Nothing found.</div>`;
+            return;
+        }
+        renderBatch();
+    }, 300);
+}
+
+function loadMore() { if(page * PER < displayList.length) { page++; renderBatch(); } }
+
+function renderBatch() {
+    const grid = document.getElementById('grid');
+    displayList.slice((page-1)*PER, page*PER).forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.onclick = () => { cinemaFlash(() => openModal(p)); };
+
+        card.addEventListener('mouseenter', () => document.body.classList.add('cur-product'));
+        card.addEventListener('mouseleave', () => document.body.classList.remove('cur-product'));
+
+        const price = p.price && p.price !== 'N/A' ? '₹' + parseFloat(p.price).toLocaleString('en-IN')
+            : '<span style="font-size:0.85rem;color:#ccc;font-weight:400;">In-Store Only</span>';
+        const badge = (p.newArrival?.toUpperCase() === 'Y') ? `<div class="badge-new">New</div>` : '';
+
+        card.innerHTML = `
+            ${badge}
+            <div class="p-img-box">
+                <div class="p-3d-wrap">
+                    <div class="p-3d-inner">
+                        <img src="${p.img}" loading="lazy" alt="${p.name}" onerror="this.src='https://placehold.co/400?text=Miniso'">
+                        <div class="p-light"></div>
+                    </div>
+                </div>
+                <div class="p-overlay"><span class="p-view-text">View</span></div>
+            </div>
+            <div class="p-meta">
+                <div class="p-cat">${p.cat||''}</div>
+                <div class="p-name">${p.name}</div>
+                <div class="p-price">${price}</div>
+            </div>
+            <div class="p-bar"></div>`;
+
+        grid.appendChild(card);
+        cardObs.observe(card);
+    });
+}
+
+/* ════════════════════════════
+   MODAL
+════════════════════════════ */
+window.openModal = function(p) {
+    document.getElementById('mImg').src = p.img;
+    document.getElementById('mImg').onerror = function() { this.src='https://placehold.co/600?text=Miniso'; };
+    document.getElementById('mCat').textContent     = p.cat||'';
+    document.getElementById('mName').textContent    = p.name;
+    document.getElementById('mSku').textContent     = p.sku||'—';
+    document.getElementById('mBarcode').textContent = p.barcode||'—';
+    document.getElementById('mSub').textContent     = p.subCat||'General';
+    document.getElementById('mPrice').textContent   = p.price && p.price !== 'N/A'
+        ? '₹' + parseFloat(p.price).toLocaleString('en-IN') : 'In-Store';
+    document.getElementById('modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+window.closeModal = function() {
+    document.getElementById('modal').classList.remove('open');
+    document.body.style.overflow = '';
+}
+document.getElementById('modal').addEventListener('click', e => { if(e.target.id==='modal') closeModal(); });
+document.addEventListener('keydown', e => { if(e.key==='Escape') { closeModal(); closeMenu(); } });
+
+/* ════════════════════════════
+   SEARCH
+════════════════════════════ */
+let st;
+document.getElementById('searchInput').addEventListener('input', e => {
+    clearTimeout(st);
+    st = setTimeout(() => { curSearch = e.target.value.toLowerCase().trim(); filterRender(); }, 280);
+});
+
+/* ════════════════════════════
+   MAGNETIC BUTTONS
+════════════════════════════ */
+document.querySelectorAll('.hero-cta, .m-action').forEach(btn => {
+    btn.addEventListener('mousemove', e => {
+        const r = btn.getBoundingClientRect();
+        const x = (e.clientX - r.left - r.width/2) * 0.16;
+        const y = (e.clientY - r.top - r.height/2) * 0.22;
+        btn.style.transform = `translate(${x}px, ${y}px) scale(1.02)`;
+    });
+    btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+});
+
+/* ════════════════════════════
+   INIT
+════════════════════════════ */
+window.onload = () => {
+    buildCinemaMenu();
+    filterRender();
+    sentinelObs.observe(document.getElementById('sentinel'));
+    initSmoothScroll();
+    init3DMouse();
+    initDepthEngine();
+    initResolution();
+};
+
+/* ════════════════════════════
+   INFINITY SMOOTH SCROLL — APPLE/ROLEX INERTIA
+   Fixed elements live outside wrapper so position:fixed works correctly.
+   Disabled on mobile for native performance.
+════════════════════════════ */
+function initSmoothScroll() {
+    if (window.innerWidth < 900) return;
+
+    const wrapper = document.getElementById('smooth-wrapper');
+    const content = document.getElementById('smooth-content');
+    if (!wrapper || !content) return;
+
+    // Match body height to content height so native scrollbar appears
+    function syncHeight() {
+        document.body.style.height = content.scrollHeight + 'px';
+    }
+    syncHeight();
+    new ResizeObserver(syncHeight).observe(content);
+
+    let current = 0;
+    const ease  = 0.075;
+
+    function smoothLoop() {
+        const target = window.scrollY;
+        current += (target - current) * ease;
+        const rounded = Math.round(current * 100) / 100;
+        content.style.transform = `translateY(${-rounded}px)`;
+        // Drive header off our smooth value
+        if (rounded > 80) { hdr.classList.replace('dark-mode', 'light-mode'); }
+        else               { hdr.classList.replace('light-mode', 'dark-mode'); }
+        requestAnimationFrame(smoothLoop);
+    }
+    requestAnimationFrame(smoothLoop);
+
+    // Fix anchor links — they need to set window.scrollY, not jump content
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            const id = a.getAttribute('href').slice(1);
+            const el = document.getElementById(id);
+            if (!el) return;
+            e.preventDefault();
+            const top = el.getBoundingClientRect().top + window.scrollY;
+            window.scrollTo({ top, behavior: 'smooth' });
+        });
+    });
+}
+
+/* ════════════════════════════
+   3D MOUSE TILT — PRODUCT CARDS
+   Max ±8deg. Barely noticeable = luxury.
+════════════════════════════ */
+function init3DMouse() {
+    if (window.innerWidth < 900) return;
+
+    document.addEventListener('mouseover', e => {
+        const wrap = e.target.closest('.p-3d-wrap');
+        if (!wrap) return;
+        const inner = wrap.querySelector('.p-3d-inner');
+        const light = wrap.querySelector('.p-light');
+        if (!inner) return;
+
+        wrap.addEventListener('mousemove', onMove);
+        wrap.addEventListener('mouseleave', onLeave);
+
+        function onMove(ev) {
+            const r = wrap.getBoundingClientRect();
+            const x = (ev.clientX - r.left) / r.width  - 0.5;
+            const y = (ev.clientY - r.top)  / r.height - 0.5;
+            inner.style.transform = `rotateY(${x * 8}deg) rotateX(${-y * 8}deg) scale(1.02)`;
+            inner.style.transition = 'transform 0.15s ease';
+            // Light follows cursor
+            if (light) {
+                const lx = 30 + x * 60;
+                const ly = 20 + y * 40;
+                light.style.background = `radial-gradient(circle at ${lx}% ${ly}%, rgba(255,255,255,0.24), transparent 58%)`;
+            }
+        }
+        function onLeave() {
+            inner.style.transform = '';
+            inner.style.transition = 'transform 0.9s cubic-bezier(0.16,1,0.3,1)';
+            if (light) light.style.background = '';
+            wrap.removeEventListener('mousemove', onMove);
+            wrap.removeEventListener('mouseleave', onLeave);
+        }
+    });
+}
+
+/* ════════════════════════════
+   DEPTH PARALLAX ENGINE
+   data-depth="0.2" → moves slower (bg layers)
+   data-depth="1"   → moves at card pace
+════════════════════════════ */
+function initDepthEngine() {
+    if (window.innerWidth < 900) return;
+
+    const hero = document.querySelector('.hero-layer-bg');
+    if (hero) hero.setAttribute('data-depth', '0.25');
+
+    const storyBg = document.getElementById('storyImgInner');
+    if (storyBg) storyBg.setAttribute('data-depth', '0.4');
+
+    function tick() {
+        const scrollY = window.scrollY;
+        document.querySelectorAll('[data-depth]').forEach(el => {
+            const d   = parseFloat(el.dataset.depth) || 0;
+            const off = scrollY * d * 0.06;
+            const cur = el.style.transform || '';
+            // Preserve scale if present
+            if (cur.includes('scale')) {
+                el.style.transform = cur.replace(/translateY\([^)]+\)/,  '') + ` translateY(${off}px)`;
+            } else {
+                el.style.transform = `translateY(${off}px)`;
+            }
+        });
+        requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+}
+
+/* ════════════════════════════
+   RESOLUTION SECTION OBSERVER
+════════════════════════════ */
+function initResolution() {
+    const rule = document.getElementById('resRule');
+    if (!rule) return;
+    const obs = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) { rule.classList.add('in-view'); obs.unobserve(rule); }
+    }, { threshold: 0.3 });
+    obs.observe(rule);
+}
+</script>
+
+</body>
+</html>
