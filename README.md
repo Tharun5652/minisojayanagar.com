@@ -1,2 +1,0 @@
-# minisojayanagar.com
-Franchise store 
