@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#E21B24">
+<meta name="description" content="MINISO Jayanagar — Official Flagship Store. Premium lifestyle products in Bengaluru. Enquire directly on WhatsApp for in-store availability.">
+<title>MINISO Jayanagar · Official Flagship Store · Bengaluru</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23E21B24' width='100' height='100' rx='20'/%3E%3Ctext x='50' y='68' font-family='serif' font-size='60' font-weight='600' text-anchor='middle' fill='white'%3EM%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Outfit:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* ========================================================================
+   MINISO JAYANAGAR — PREMIUM FLAGSHIP EXPERIENCE
+   Design language: Apple × MINISO. Editorial, tactile, cinematic.
+   ======================================================================== */
+:root{
+  --red:#E21B24; --red-2:#B8151C; --red-dim:rgba(226,27,36,.07); --red-glow:rgba(226,27,36,.18);
+  --white:#fff; --soft:#FAFAFA; --cream:#F6F4F1;
+  --black:#0A0A0A; --ink:#1A1A1A; --divider:#EDEDED; --grey:#888; --grey-2:#B5B5B5;
+  --gold:#C9A961; --green:#16A34A; --amber:#F59E0B; --pink:#FF6B9D;
+  --f-display:'Cormorant Garamond',serif; --f-body:'Outfit',sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1); --ease-back:cubic-bezier(.34,1.56,.64,1);
+  --nav-h:70px;
+  --shadow-s:0 2px 8px rgba(0,0,0,.04);
+  --shadow-m:0 10px 30px rgba(0,0,0,.06);
+  --shadow-l:0 20px 60px rgba(0,0,0,.10);
+  --shadow-xl:0 30px 80px rgba(0,0,0,.14);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+html{scroll-behavior:smooth}
+body{background:var(--white);color:var(--black);font-family:var(--f-body);overflow-x:hidden;font-weight:400;line-height:1.5}
+body.noscroll{overflow:hidden}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+button{font-family:inherit}
+input,textarea{font-family:inherit}
+::selection{background:var(--red);color:#fff}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:var(--soft)}
+::-webkit-scrollbar-thumb{background:var(--grey-2);border-radius:10px}
+::-webkit-scrollbar-thumb:hover{background:var(--grey)}
+
+/* ============ LOADER ============ */
+#loader{position:fixed;inset:0;z-index:100000;background:#fff;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:18px;transition:opacity .8s var(--ease),visibility .8s}
+#loader.hide{opacity:0;visibility:hidden}
+.loader-mark{width:70px;height:70px;border-radius:18px;background:var(--red);display:flex;align-items:center;justify-content:center;
+  font-family:var(--f-display);color:#fff;font-size:2.3rem;font-weight:600;box-shadow:0 20px 50px rgba(226,27,36,.35);
+  animation:markPulse 1.4s var(--ease) infinite}
+@keyframes markPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+.loader-logo{font-family:var(--f-display);font-size:clamp(1.6rem,4vw,2.4rem);font-weight:500;
+  letter-spacing:12px;text-transform:uppercase;text-indent:12px;color:var(--black);animation:ldFade .9s var(--ease)}
+.loader-sub{font-size:.55rem;letter-spacing:5px;text-transform:uppercase;color:rgba(0,0,0,.35);margin-top:-6px}
+.loader-bar{width:130px;height:2px;background:var(--divider);border-radius:2px;overflow:hidden;margin-top:10px}
+.loader-bar span{display:block;height:100%;width:40%;background:var(--red);border-radius:2px;animation:ld 1.1s infinite var(--ease)}
+@keyframes ld{0%{transform:translateX(-120%)}100%{transform:translateX(320%)}}
+@keyframes ldFade{from{opacity:0;letter-spacing:24px}to{opacity:1;letter-spacing:12px}}
+
+/* ============ HEADER (glassmorphism) ============ */
+#hdr{position:fixed;top:0;left:0;right:0;z-index:1000;height:var(--nav-h);
+  display:flex;align-items:center;justify-content:space-between;gap:18px;padding:0 clamp(16px,4vw,52px);
+  background:rgba(255,255,255,.72);backdrop-filter:blur(22px) saturate(180%);
+  -webkit-backdrop-filter:blur(22px) saturate(180%);
+  border-bottom:1px solid transparent;transition:height .4s var(--ease),border-color .4s,box-shadow .4s,background .4s}
+#hdr.scrolled{height:60px;border-bottom-color:var(--divider);box-shadow:0 6px 30px rgba(0,0,0,.05);background:rgba(255,255,255,.85)}
+.hdr-brand{display:flex;align-items:center;gap:10px;line-height:1;flex-shrink:0;cursor:pointer}
+.hdr-mark{width:34px;height:34px;border-radius:10px;background:var(--red);display:flex;align-items:center;justify-content:center;
+  font-family:var(--f-display);color:#fff;font-size:1.1rem;font-weight:600;box-shadow:0 6px 18px rgba(226,27,36,.30)}
+.hdr-txt{display:flex;flex-direction:column;line-height:1}
+.hdr-logo{font-family:var(--f-display);font-size:1.15rem;font-weight:600;letter-spacing:4px;text-transform:uppercase}
+.hdr-sub{font-size:.48rem;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:var(--red);margin-top:4px}
+.hdr-nav{display:flex;align-items:center;gap:clamp(14px,1.6vw,26px);flex:1;justify-content:center}
+.hdr-nav a{font-size:.72rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--black);position:relative;padding:4px 0;white-space:nowrap;cursor:pointer;transition:color .3s}
+.hdr-nav a::after{content:'';position:absolute;left:0;bottom:-2px;height:1.5px;width:0;background:var(--red);transition:width .35s var(--ease)}
+.hdr-nav a:hover,.hdr-nav a.active{color:var(--red)}
+.hdr-nav a:hover::after,.hdr-nav a.active::after{width:100%}
+.hdr-right{display:flex;align-items:center;gap:4px;flex-shrink:0}
+.hdr-ic{width:38px;height:38px;display:flex;align-items:center;justify-content:center;
+  border-radius:50%;font-size:.95rem;color:var(--black);background:none;border:none;cursor:pointer;position:relative;transition:.3s}
+.hdr-ic:hover{color:var(--red);background:var(--red-dim);transform:translateY(-1px)}
+.hdr-ic .badge{position:absolute;top:4px;right:4px;min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:var(--red);color:#fff;font-size:.55rem;font-weight:700;display:flex;align-items:center;justify-content:center;line-height:1}
+.hdr-ic .badge:empty{display:none}
+.hdr-menu-btn{display:none;flex-direction:column;gap:5px;width:26px;height:26px;background:none;border:none;cursor:pointer;align-items:flex-end;justify-content:center}
+.hdr-menu-btn span{height:2px;background:var(--black);border-radius:2px;transition:.3s;width:100%}
+.hdr-menu-btn span:nth-child(2){width:70%}
+
+/* ============ SEARCH DROPDOWN (live suggestions) ============ */
+#searchDrop{position:fixed;top:var(--nav-h);left:0;right:0;background:rgba(255,255,255,.96);backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);z-index:999;box-shadow:0 20px 50px rgba(0,0,0,.10);
+  transform:translateY(-20px);opacity:0;pointer-events:none;transition:.35s var(--ease);
+  border-bottom:1px solid var(--divider);max-height:75vh;overflow-y:auto}
+#searchDrop.open{transform:translateY(0);opacity:1;pointer-events:auto}
+.search-wrap-top{max-width:900px;margin:0 auto;padding:24px clamp(16px,4vw,40px)}
+.search-input-top{width:100%;padding:14px 46px 14px 46px;border:1px solid var(--divider);border-radius:14px;
+  font-size:1.05rem;background:#fff;outline:none;transition:.3s;font-family:inherit}
+.search-input-top:focus{border-color:var(--red);box-shadow:0 0 0 4px var(--red-dim)}
+.search-input-wrap{position:relative}
+.search-input-wrap .fa-search{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--grey);pointer-events:none}
+.search-input-wrap .close-s{position:absolute;right:12px;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;background:none;border:none;color:var(--grey);cursor:pointer;font-size:1rem}
+.search-input-wrap .close-s:hover{background:var(--soft);color:var(--red)}
+.search-suggests{margin-top:16px}
+.search-suggest-title{font-size:.6rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--grey);margin:14px 0 8px;font-weight:600}
+.search-suggest-item{display:flex;align-items:center;gap:14px;padding:10px 12px;border-radius:10px;cursor:pointer;transition:background .2s}
+.search-suggest-item:hover{background:var(--soft)}
+.search-suggest-item img{width:44px;height:44px;object-fit:contain;background:var(--soft);border-radius:8px;padding:4px}
+.search-suggest-info{flex:1;min-width:0}
+.search-suggest-name{font-size:.82rem;font-weight:500;color:var(--black);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.search-suggest-cat{font-size:.65rem;color:var(--grey);letter-spacing:1px;text-transform:uppercase;margin-top:3px}
+.search-suggest-price{font-size:.85rem;font-weight:600;color:var(--red);white-space:nowrap;font-variant-numeric:tabular-nums}
+.search-empty{padding:30px 12px;text-align:center;color:var(--grey);font-size:.85rem}
+.search-empty i{font-size:1.6rem;color:var(--grey-2);margin-bottom:8px;display:block}
+.search-quick{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.search-quick span{padding:6px 12px;background:var(--soft);border-radius:20px;font-size:.7rem;color:var(--grey);cursor:pointer;letter-spacing:.5px;transition:.25s}
+.search-quick span:hover{background:var(--red);color:#fff}
+
+/* ============ MOBILE MENU ============ */
+#mobmenu{position:fixed;inset:0;z-index:2000;background:#fff;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:6px;opacity:0;pointer-events:none;transition:opacity .5s var(--ease)}
+#mobmenu.open{opacity:1;pointer-events:auto}
+#mobmenu a{font-family:var(--f-display);font-size:1.7rem;color:var(--black);padding:10px;cursor:pointer;transition:color .3s}
+#mobmenu a:hover{color:var(--red)}
+.mm-close{position:absolute;top:22px;right:26px;font-size:1.4rem;background:none;border:none;cursor:pointer;color:#aaa;width:40px;height:40px;border-radius:50%}
+.mm-close:hover{background:var(--soft);color:var(--red)}
+.mm-social{display:flex;gap:16px;margin-top:24px}
+.mm-social a{font-size:1.2rem;color:var(--grey)}
+.mm-social a:hover{color:var(--red)}
+
+/* ============ HERO ============ */
+#hero{position:relative;min-height:100vh;background:var(--black);overflow:hidden;display:flex;align-items:center}
+.hero-bg{position:absolute;inset:0;background:url('store_entrance.jpg.jpeg') center/cover no-repeat;opacity:.42;
+  animation:heroZoom 28s ease-in-out infinite alternate;filter:saturate(1.1) contrast(1.05)}
+@keyframes heroZoom{from{transform:scale(1)}to{transform:scale(1.12)}}
+.hero-grad{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,.35),transparent 40%,rgba(10,10,10,.85))}
+.hero-inner{position:relative;z-index:2;padding:var(--nav-h) clamp(20px,8vw,120px) 0;max-width:900px}
+.hero-eyebrow{font-size:.62rem;font-weight:500;letter-spacing:4px;text-transform:uppercase;
+  color:rgba(255,255,255,.55);margin-bottom:26px;display:flex;align-items:center;gap:14px;
+  opacity:0;animation:fadeUp .8s .3s var(--ease) forwards}
+.hero-eyebrow::before{content:'';width:26px;height:1px;background:var(--red)}
+.hero-title{font-family:var(--f-display);font-size:clamp(3rem,10vw,8rem);font-weight:300;line-height:1;
+  color:#fff;letter-spacing:-3px;margin-bottom:32px}
+.hero-title span{display:block;opacity:0;transform:translateY(40px);animation:fadeUp 1s var(--ease) forwards}
+.hero-title span:nth-child(1){animation-delay:.5s}
+.hero-title span:nth-child(2){animation-delay:.7s;color:var(--red)}
+.hero-title i{font-style:italic;font-weight:400}
+.hero-line{width:0;height:1px;background:rgba(255,255,255,.3);margin-bottom:30px;animation:lineGrow 1.2s .9s var(--ease) forwards}
+@keyframes lineGrow{to{width:70px}}
+.hero-desc{font-size:clamp(.95rem,1.5vw,1.15rem);font-weight:300;color:rgba(255,255,255,.85);max-width:520px;
+  margin-bottom:40px;opacity:0;animation:fadeUp .8s 1.1s var(--ease) forwards;line-height:1.7}
+.hero-cta{display:inline-flex;align-items:center;gap:16px;padding:16px 32px;background:var(--red);color:#fff;
+  border-radius:100px;font-size:.75rem;font-weight:500;letter-spacing:2px;text-transform:uppercase;
+  opacity:0;animation:fadeUp .8s 1.3s var(--ease) forwards;transition:.4s var(--ease);cursor:pointer;
+  box-shadow:0 20px 50px rgba(226,27,36,.3)}
+.hero-cta:hover{background:#fff;color:var(--red);transform:translateY(-3px);box-shadow:0 30px 60px rgba(0,0,0,.3)}
+.hero-cta i{transition:transform .3s var(--ease)}
+.hero-cta:hover i{transform:translateX(4px)}
+.hero-scroll{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.6);
+  font-size:.55rem;letter-spacing:4px;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:12px;
+  opacity:0;animation:fadeUp .8s 1.6s var(--ease) forwards}
+.hero-scroll i{display:block;width:1px;height:28px;background:rgba(255,255,255,.4);animation:scrollLine 2s var(--ease) infinite}
+@keyframes scrollLine{0%{transform:scaleY(.2);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(.2);transform-origin:bottom}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+/* ============ STORE STATUS BAR ============ */
+.store-status{background:var(--black);color:#fff;padding:14px 30px;display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;font-size:.72rem;letter-spacing:1.5px;text-transform:uppercase}
+.store-status .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green);animation:pulse 2s infinite}
+.store-status .dot.closed{background:#DC2626;box-shadow:0 0 12px #DC2626}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.store-status .sep{opacity:.3}
+.store-status a{color:#fff;transition:color .3s}
+.store-status a:hover{color:var(--red)}
+.store-status .st-loc i,.store-status .st-time i,.store-status .st-tel i{color:var(--red);margin-right:6px}
+
+/* ============ STATS ============ */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--divider);padding:2px;
+  border-bottom:1px solid var(--divider)}
+.stats>div{background:#fff;padding:38px 20px;text-align:center;transition:.4s var(--ease)}
+.stats>div:hover{background:var(--soft)}
+.stat-n{font-family:var(--f-display);font-size:clamp(1.8rem,4vw,3rem);font-weight:400;color:var(--black);line-height:1;letter-spacing:-1px}
+.stat-l{font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--grey);margin-top:10px;font-weight:500}
+
+/* ============ SECTIONS ============ */
+.sec{padding:clamp(60px,10vw,140px) clamp(16px,5vw,80px);max-width:1600px;margin:0 auto}
+.sec.statement{background:var(--soft);max-width:none}
+.sec.dark{background:var(--black);color:#fff;max-width:none}
+.sec-head{text-align:center;margin-bottom:clamp(40px,7vw,80px);max-width:900px;margin-left:auto;margin-right:auto}
+.sec-head.left{text-align:left;margin-left:0;padding-left:0}
+.sec-eyebrow{font-size:.62rem;font-weight:500;letter-spacing:4px;text-transform:uppercase;color:var(--red);margin-bottom:20px;display:inline-flex;align-items:center;gap:12px}
+.sec-eyebrow::before,.sec-eyebrow::after{content:'';width:20px;height:1px;background:var(--red)}
+.sec-head.left .sec-eyebrow::after{display:none}
+.sec-title{font-family:var(--f-display);font-size:clamp(2.2rem,5.5vw,4.5rem);font-weight:400;line-height:1.05;letter-spacing:-2px;margin-bottom:22px}
+.sec-title em{font-style:italic;color:var(--red);font-weight:500}
+.sec-sub{font-size:clamp(.9rem,1.3vw,1.05rem);color:var(--grey);max-width:640px;margin:0 auto;line-height:1.75;font-weight:300}
+.sec-head.left .sec-sub{margin:0}
+.sec.dark .sec-title{color:#fff}
+.sec.dark .sec-sub{color:rgba(255,255,255,.6)}
+
+/* ============ TOOLS / FILTERS ============ */
+.tools{display:flex;flex-direction:column;gap:26px;margin-bottom:44px}
+.search-wrap{position:relative;max-width:640px;margin:0 auto;width:100%;display:flex;gap:10px}
+.search-icon{position:absolute;left:20px;top:50%;transform:translateY(-50%);color:var(--grey);pointer-events:none}
+.search-input{flex:1;padding:15px 20px 15px 48px;border:1px solid var(--divider);border-radius:100px;
+  font-size:.9rem;background:#fff;outline:none;transition:.3s;font-family:inherit}
+.search-input:focus{border-color:var(--red);box-shadow:0 0 0 4px var(--red-dim)}
+.scan-btn{padding:0 20px;border:1px solid var(--divider);background:#fff;border-radius:100px;
+  font-size:.72rem;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;cursor:pointer;
+  display:flex;align-items:center;gap:8px;transition:.3s;color:var(--black)}
+.scan-btn:hover{border-color:var(--red);color:var(--red);background:var(--red-dim)}
+.sub-filters{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.sub-chip{padding:9px 20px;border:1px solid var(--divider);background:#fff;border-radius:100px;
+  font-size:.68rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;
+  color:var(--black);transition:.3s var(--ease);white-space:nowrap}
+.sub-chip:hover{border-color:var(--red);color:var(--red)}
+.sub-chip.active{background:var(--black);color:#fff;border-color:var(--black)}
+.count-display{text-align:center;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--grey);margin-bottom:32px;font-weight:500}
+.count-display strong{color:var(--red);font-weight:700}
+
+/* ============ PRODUCT GRID / CARD ============ */
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:clamp(16px,2.2vw,32px)}
+.product-grid.tight{grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:20px}
+.product-card{background:#fff;border-radius:18px;overflow:hidden;cursor:pointer;position:relative;
+  transition:.5s var(--ease);border:1px solid transparent;display:flex;flex-direction:column}
+.product-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-l);border-color:var(--divider)}
+.pc-img-wrap{position:relative;aspect-ratio:1/1;background:var(--soft);overflow:hidden;border-radius:14px 14px 0 0}
+.pc-img{width:100%;height:100%;object-fit:contain;padding:14%;transition:transform .8s var(--ease),opacity .3s;background:#fff}
+.product-card:hover .pc-img{transform:scale(1.10)}
+.pc-badges{position:absolute;top:12px;left:12px;display:flex;flex-direction:column;gap:6px;z-index:2;pointer-events:none}
+.pc-badge{padding:5px 10px;border-radius:20px;font-size:.55rem;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:inline-flex;align-items:center;gap:4px;line-height:1}
+.pc-badge.new{background:rgba(22,163,74,.92);color:#fff}
+.pc-badge.hot{background:rgba(226,27,36,.92);color:#fff}
+.pc-badge.trend{background:rgba(255,107,157,.92);color:#fff}
+.pc-badge.ltd{background:rgba(201,169,97,.95);color:#fff}
+.pc-wish{position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.9);
+  backdrop-filter:blur(8px);border:none;cursor:pointer;color:var(--grey);font-size:.9rem;z-index:2;
+  display:flex;align-items:center;justify-content:center;transition:.3s var(--ease-back);opacity:0;transform:scale(.8)}
+.product-card:hover .pc-wish{opacity:1;transform:scale(1)}
+.pc-wish:hover{color:var(--red);background:#fff;transform:scale(1.1)!important}
+.pc-wish.active{color:var(--red);opacity:1;transform:scale(1)}
+.pc-wish.active i{font-weight:900}
+.pc-body{padding:18px 16px 20px;display:flex;flex-direction:column;flex:1}
+.pc-cat{font-size:.55rem;letter-spacing:2px;text-transform:uppercase;color:var(--grey);font-weight:500;margin-bottom:8px}
+.pc-name{font-size:.9rem;font-weight:500;color:var(--black);line-height:1.4;margin-bottom:10px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.5em}
+.pc-rating{display:flex;align-items:center;gap:6px;margin-bottom:12px}
+.pc-rating .stars{color:var(--amber);font-size:.7rem;letter-spacing:1px}
+.pc-rating .count{font-size:.65rem;color:var(--grey);letter-spacing:.5px}
+.pc-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto}
+.pc-price{font-family:var(--f-body);font-size:1.05rem;font-weight:600;color:var(--black);font-variant-numeric:tabular-nums;line-height:1}
+.pc-price small{font-size:.7em;font-weight:500}
+.pc-wa{width:38px;height:38px;border-radius:50%;background:var(--green);color:#fff;border:none;cursor:pointer;
+  font-size:.95rem;display:flex;align-items:center;justify-content:center;transition:.3s var(--ease-back);flex-shrink:0;
+  box-shadow:0 6px 16px rgba(22,163,74,.30)}
+.pc-wa:hover{transform:scale(1.15) rotate(6deg);box-shadow:0 10px 24px rgba(22,163,74,.45)}
+.pc-enquire-btn{width:100%;margin-top:12px;padding:10px 14px;background:var(--black);color:#fff;border:none;border-radius:100px;
+  font-size:.65rem;letter-spacing:1.8px;text-transform:uppercase;font-weight:600;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:8px;transition:.35s var(--ease);font-family:inherit}
+.pc-enquire-btn:hover{background:var(--green);letter-spacing:2.2px}
+.pc-enquire-btn i{font-size:.9rem}
+
+/* skeleton */
+.pc-skeleton{background:#fff;border-radius:18px;overflow:hidden;border:1px solid var(--divider)}
+.pc-skeleton .sk-img{aspect-ratio:1/1;background:linear-gradient(90deg,#f4f4f4,#eaeaea,#f4f4f4);background-size:200% 100%;animation:sk 1.4s infinite}
+.pc-skeleton .sk-body{padding:16px}
+.pc-skeleton .sk-line{height:10px;background:linear-gradient(90deg,#f4f4f4,#eaeaea,#f4f4f4);background-size:200% 100%;animation:sk 1.4s infinite;border-radius:4px;margin-bottom:10px}
+.pc-skeleton .sk-line.short{width:60%}
+@keyframes sk{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+.load-more{display:block;margin:60px auto 0;padding:16px 40px;background:#fff;border:1px solid var(--black);color:var(--black);
+  border-radius:100px;font-size:.7rem;letter-spacing:2.5px;text-transform:uppercase;cursor:pointer;font-weight:600;transition:.35s var(--ease)}
+.load-more:hover{background:var(--black);color:#fff;letter-spacing:3px}
+.empty-state{grid-column:1/-1;padding:60px 20px;text-align:center;color:var(--grey)}
+.empty-state i{font-size:2.4rem;color:var(--grey-2);margin-bottom:16px}
+.empty-state h4{font-family:var(--f-display);font-size:1.6rem;margin-bottom:10px;color:var(--black);font-weight:400}
+.empty-state p{font-size:.85rem;color:var(--grey)}
+
+/* ============ HORIZONTAL SCROLLER ============ */
+.h-scroll{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:20px;
+  -ms-overflow-style:none;scrollbar-width:none;margin:0 -20px;padding-left:20px;padding-right:20px}
+.h-scroll::-webkit-scrollbar{display:none}
+.h-scroll .product-card{flex:0 0 280px;scroll-snap-align:start}
+@media(max-width:640px){.h-scroll .product-card{flex-basis:220px}}
+
+/* ============ CATEGORY TILES ============ */
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}
+.cat-tile{position:relative;aspect-ratio:4/5;border-radius:20px;overflow:hidden;cursor:pointer;background:var(--soft);
+  transition:.5s var(--ease)}
+.cat-tile:hover{transform:translateY(-6px);box-shadow:var(--shadow-l)}
+.cat-tile .cat-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-size:5rem;color:var(--red);opacity:.85;transition:.6s var(--ease)}
+.cat-tile:hover .cat-icon{transform:scale(1.15) rotate(-5deg);opacity:1}
+.cat-tile .cat-info{position:absolute;left:0;right:0;bottom:0;padding:20px;background:linear-gradient(transparent,rgba(0,0,0,.65));color:#fff}
+.cat-tile .cat-name{font-family:var(--f-display);font-size:1.3rem;font-weight:500;letter-spacing:-.5px;margin-bottom:4px}
+.cat-tile .cat-count{font-size:.62rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.7);font-weight:500}
+
+/* ============ REVIEWS ============ */
+.review-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.review-card{background:#fff;border:1px solid var(--divider);border-radius:20px;padding:32px 28px;transition:.4s var(--ease)}
+.review-card:hover{border-color:var(--red);box-shadow:var(--shadow-m);transform:translateY(-4px)}
+.review-head{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.review-avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--red),var(--red-2));color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--f-display);font-size:1.3rem;font-weight:600}
+.review-name{font-weight:600;font-size:.9rem}
+.review-when{font-size:.7rem;color:var(--grey);letter-spacing:.5px}
+.review-stars{color:var(--amber);font-size:.8rem;margin-bottom:12px;letter-spacing:2px}
+.review-text{font-size:.88rem;color:var(--ink);line-height:1.7;font-weight:300}
+.review-verified{display:inline-flex;align-items:center;gap:5px;margin-top:12px;font-size:.65rem;letter-spacing:1px;color:var(--green);text-transform:uppercase;font-weight:600}
+
+/* ============ STORE CARD ============ */
+.store-block{display:grid;grid-template-columns:1.1fr 1fr;gap:0;background:#fff;border-radius:24px;overflow:hidden;box-shadow:var(--shadow-l);border:1px solid var(--divider)}
+.store-map{position:relative;min-height:420px;background:var(--soft)}
+.store-map iframe{width:100%;height:100%;border:0;position:absolute;inset:0}
+.store-info{padding:48px 40px;display:flex;flex-direction:column;justify-content:center;gap:22px}
+.store-info h3{font-family:var(--f-display);font-size:2.2rem;font-weight:500;line-height:1.1;letter-spacing:-1px}
+.store-info h3 em{font-style:italic;color:var(--red)}
+.store-info .st-row{display:flex;align-items:flex-start;gap:14px}
+.store-info .st-row i{width:36px;height:36px;border-radius:50%;background:var(--red-dim);color:var(--red);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.85rem}
+.store-info .st-lbl{font-size:.6rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--grey);font-weight:600;margin-bottom:3px}
+.store-info .st-val{font-size:.9rem;color:var(--ink);line-height:1.5}
+.store-info .st-val a{color:var(--red);font-weight:500}
+.store-info .st-val a:hover{text-decoration:underline}
+.store-info .st-open{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:rgba(22,163,74,.10);color:var(--green);border-radius:20px;font-size:.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-top:8px}
+.store-info .st-open.closed{background:rgba(220,38,38,.10);color:#DC2626}
+.store-info .st-open .dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+.store-info .st-open.closed .dot{background:#DC2626}
+.store-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.store-actions a{padding:12px 22px;border-radius:100px;font-size:.68rem;letter-spacing:2px;text-transform:uppercase;font-weight:600;display:inline-flex;align-items:center;gap:8px;transition:.35s var(--ease)}
+.store-actions .sa-wa{background:var(--green);color:#fff;box-shadow:0 6px 20px rgba(22,163,74,.25)}
+.store-actions .sa-wa:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(22,163,74,.4)}
+.store-actions .sa-call{background:var(--black);color:#fff}
+.store-actions .sa-call:hover{background:var(--red);transform:translateY(-2px)}
+.store-actions .sa-map{background:var(--red-dim);color:var(--red);border:1px solid var(--red-dim)}
+.store-actions .sa-map:hover{background:var(--red);color:#fff;transform:translateY(-2px)}
+
+/* ============ FOOTER ============ */
+footer{background:var(--black);color:rgba(255,255,255,.65);padding:80px clamp(20px,5vw,80px) 40px;position:relative;overflow:hidden}
+footer::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:60%;height:1px;background:linear-gradient(90deg,transparent,var(--red),transparent)}
+.foot-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:44px;margin-bottom:60px}
+.foot-brand h4{font-family:var(--f-display);font-size:1.8rem;color:#fff;font-weight:500;letter-spacing:4px;margin-bottom:6px}
+.foot-brand .foot-sub{font-size:.55rem;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:22px}
+.foot-brand p{font-size:.85rem;line-height:1.8;color:rgba(255,255,255,.5);max-width:340px;font-weight:300}
+.foot-col h5{font-size:.65rem;letter-spacing:3px;text-transform:uppercase;color:#fff;margin-bottom:22px;font-weight:600}
+.foot-col a,.foot-col p{display:block;font-size:.85rem;color:rgba(255,255,255,.55);padding:5px 0;transition:color .3s;cursor:pointer;font-weight:300}
+.foot-col a:hover{color:var(--red)}
+.foot-col p i{color:var(--red);margin-right:8px;width:14px}
+.foot-social{display:flex;gap:10px;margin-top:16px}
+.foot-social a{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.7);transition:.35s var(--ease);font-size:.9rem;padding:0}
+.foot-social a:hover{background:var(--red);color:#fff;transform:translateY(-3px)}
+.foot-bot{border-top:1px solid rgba(255,255,255,.08);padding-top:26px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.foot-bot p{font-size:.7rem;letter-spacing:1.5px;color:rgba(255,255,255,.4);font-weight:400}
+.foot-bot .foot-legal{display:flex;gap:22px}
+.foot-bot .foot-legal a{font-size:.7rem;letter-spacing:1.5px;color:rgba(255,255,255,.4)}
+.foot-bot .foot-legal a:hover{color:#fff}
+
+/* ============ FLOATING ACTIONS (all pages) ============ */
+#floatDock{position:fixed;right:20px;bottom:20px;z-index:900;display:flex;flex-direction:column;gap:12px;align-items:flex-end}
+.fdock-item{width:52px;height:52px;border-radius:50%;background:#fff;color:var(--black);border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;font-size:1.1rem;box-shadow:var(--shadow-l);position:relative;
+  transition:.35s var(--ease-back);text-decoration:none;transform:scale(0);opacity:0}
+#floatDock.open .fdock-item{transform:scale(1);opacity:1}
+#floatDock .fdock-main{transform:scale(1);opacity:1;background:var(--green);color:#fff;width:60px;height:60px;font-size:1.5rem;box-shadow:0 12px 30px rgba(22,163,74,.4)}
+#floatDock .fdock-main:hover{transform:scale(1.08) rotate(-6deg)}
+.fdock-item.wa{background:var(--green);color:#fff}
+.fdock-item.call{background:var(--black);color:#fff}
+.fdock-item.map{background:#4285F4;color:#fff}
+.fdock-item.ig{background:linear-gradient(135deg,#833AB4,#FD1D1D,#FCB045);color:#fff}
+.fdock-item:hover:not(.fdock-main){transform:scale(1.12)!important}
+.fdock-item::before{content:attr(data-label);position:absolute;right:calc(100% + 12px);top:50%;transform:translateY(-50%) translateX(6px);
+  background:var(--black);color:#fff;padding:6px 12px;border-radius:8px;font-size:.65rem;letter-spacing:1.5px;text-transform:uppercase;
+  white-space:nowrap;opacity:0;pointer-events:none;transition:.3s var(--ease);font-weight:500}
+.fdock-item:hover::before{opacity:1;transform:translateY(-50%) translateX(0)}
+.fdock-item.pulse::after{content:'';position:absolute;inset:0;border-radius:50%;border:2px solid currentColor;animation:pulseRing 1.8s infinite}
+@keyframes pulseRing{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.7);opacity:0}}
+#scrollTop{position:fixed;left:20px;bottom:20px;z-index:900;width:46px;height:46px;border-radius:50%;background:var(--black);color:#fff;border:none;cursor:pointer;font-size:.9rem;box-shadow:var(--shadow-m);opacity:0;pointer-events:none;transition:.4s var(--ease-back);transform:scale(.7)}
+#scrollTop.show{opacity:1;pointer-events:auto;transform:scale(1)}
+#scrollTop:hover{background:var(--red);transform:scale(1.1)}
+
+/* ============ TOAST ============ */
+#toast{position:fixed;left:50%;bottom:110px;transform:translateX(-50%) translateY(20px);
+  background:var(--black);color:#fff;padding:12px 24px;border-radius:100px;font-size:.75rem;font-weight:500;letter-spacing:.8px;
+  z-index:5000;opacity:0;pointer-events:none;transition:.4s var(--ease);box-shadow:var(--shadow-l);display:flex;align-items:center;gap:10px;max-width:90vw}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+#toast i{color:var(--red)}
+#toast.success i{color:var(--green)}
+
+/* ============ REVEAL ANIMATION ============ */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.in{opacity:1;transform:translateY(0)}
+.reveal.r-d1{transition-delay:.1s}
+.reveal.r-d2{transition-delay:.2s}
+.reveal.r-d3{transition-delay:.3s}
+.reveal.r-d4{transition-delay:.4s}
+
+/* ============ PRODUCT DETAIL VIEW ============ */
+#productView{display:none;padding:calc(var(--nav-h) + 24px) clamp(16px,5vw,80px) 80px;max-width:1500px;margin:0 auto;min-height:100vh}
+#productView.on{display:block;animation:pdFade .5s var(--ease)}
+@keyframes pdFade{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.pd-breadcrumb{font-size:.7rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--grey);margin-bottom:26px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.pd-breadcrumb a{color:var(--grey);cursor:pointer;transition:color .3s}
+.pd-breadcrumb a:hover{color:var(--red)}
+.pd-breadcrumb .sep{color:var(--grey-2)}
+.pd-breadcrumb .curr{color:var(--black);font-weight:600}
+.pd-main{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(30px,5vw,80px);margin-bottom:80px}
+.pd-gallery{position:sticky;top:calc(var(--nav-h) + 20px);align-self:start}
+.pd-main-img{aspect-ratio:1/1;background:var(--soft);border-radius:24px;overflow:hidden;position:relative;cursor:zoom-in;box-shadow:var(--shadow-m)}
+.pd-main-img img{width:100%;height:100%;object-fit:contain;padding:8%;transition:transform .5s var(--ease)}
+.pd-main-img:hover img{transform:scale(1.08)}
+.pd-main-img .zoom-hint{position:absolute;bottom:14px;right:14px;padding:6px 12px;background:rgba(0,0,0,.6);color:#fff;border-radius:20px;font-size:.6rem;letter-spacing:1.5px;text-transform:uppercase;backdrop-filter:blur(6px);opacity:0;transition:opacity .3s}
+.pd-main-img:hover .zoom-hint{opacity:1}
+.pd-main-img .pd-badges-abs{position:absolute;top:16px;left:16px;display:flex;flex-direction:column;gap:6px;z-index:2}
+.pd-thumbs{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.pd-thumb{width:80px;height:80px;border-radius:12px;background:var(--soft);cursor:pointer;overflow:hidden;border:2px solid transparent;transition:.3s;flex-shrink:0}
+.pd-thumb img{width:100%;height:100%;object-fit:contain;padding:8%}
+.pd-thumb:hover{border-color:var(--red-glow)}
+.pd-thumb.active{border-color:var(--red)}
+
+.pd-info{padding-top:8px}
+.pd-cat{font-size:.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--red);font-weight:600;margin-bottom:14px}
+.pd-name{font-family:var(--f-display);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:500;line-height:1.15;letter-spacing:-1px;margin-bottom:20px;color:var(--black)}
+.pd-rating-row{display:flex;align-items:center;gap:14px;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--divider)}
+.pd-rating-row .stars{color:var(--amber);font-size:.85rem;letter-spacing:2px}
+.pd-rating-row .count{font-size:.75rem;color:var(--grey);letter-spacing:.5px}
+.pd-price-row{display:flex;align-items:baseline;gap:14px;margin-bottom:26px}
+.pd-price{font-size:2rem;font-weight:600;color:var(--black);font-variant-numeric:tabular-nums}
+.pd-price small{font-size:.65em;font-weight:500}
+.pd-tax{font-size:.7rem;letter-spacing:1px;color:var(--grey)}
+.pd-avail{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:rgba(22,163,74,.10);color:var(--green);border-radius:20px;font-size:.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:22px}
+.pd-avail .dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+.pd-avail.closed{background:rgba(220,38,38,.10);color:#DC2626}
+.pd-avail.closed .dot{background:#DC2626}
+.pd-desc{font-size:.92rem;color:var(--ink);line-height:1.75;margin-bottom:26px;font-weight:300}
+.pd-meta{border-top:1px solid var(--divider);border-bottom:1px solid var(--divider);padding:18px 0;margin-bottom:26px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.pd-meta-item{display:flex;flex-direction:column;gap:3px}
+.pd-meta-lbl{font-size:.58rem;letter-spacing:2px;text-transform:uppercase;color:var(--grey);font-weight:600}
+.pd-meta-val{font-size:.85rem;color:var(--black);font-weight:500;word-break:break-all}
+.pd-actions{display:flex;flex-direction:column;gap:12px;margin-bottom:26px}
+.pd-btn{padding:16px 26px;border-radius:100px;font-size:.75rem;letter-spacing:2.5px;text-transform:uppercase;font-weight:600;
+  border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:12px;transition:.4s var(--ease);font-family:inherit}
+.pd-btn-primary{background:var(--green);color:#fff;box-shadow:0 12px 32px rgba(22,163,74,.30)}
+.pd-btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(22,163,74,.45);letter-spacing:3px}
+.pd-btn-primary i{font-size:1.1rem}
+.pd-btn-secondary{background:#fff;color:var(--black);border:1.5px solid var(--black)}
+.pd-btn-secondary:hover{background:var(--black);color:#fff}
+.pd-actions-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pd-icon-btn{padding:14px;border-radius:100px;background:#fff;border:1px solid var(--divider);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:8px;font-size:.7rem;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;color:var(--black);transition:.35s var(--ease);font-family:inherit}
+.pd-icon-btn:hover{border-color:var(--red);color:var(--red)}
+.pd-icon-btn.active{background:var(--red-dim);color:var(--red);border-color:var(--red)}
+.pd-icon-btn i{font-size:.9rem}
+.pd-features{list-style:none;margin-top:20px}
+.pd-features li{display:flex;align-items:flex-start;gap:12px;padding:10px 0;font-size:.85rem;color:var(--ink);border-bottom:1px dashed var(--divider);font-weight:300}
+.pd-features li:last-child{border-bottom:none}
+.pd-features li i{color:var(--green);margin-top:3px}
+
+/* Share popover */
+.pd-share-pop{position:fixed;inset:0;background:rgba(10,10,10,.55);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;z-index:6000;opacity:0;pointer-events:none;transition:.35s}
+.pd-share-pop.on{opacity:1;pointer-events:auto}
+.pd-share-card{background:#fff;border-radius:24px;padding:36px 32px;max-width:400px;width:90%;text-align:center;transform:scale(.9);transition:.4s var(--ease-back);box-shadow:var(--shadow-xl)}
+.pd-share-pop.on .pd-share-card{transform:scale(1)}
+.pd-share-card h4{font-family:var(--f-display);font-size:1.6rem;font-weight:500;margin-bottom:8px}
+.pd-share-card p{font-size:.85rem;color:var(--grey);margin-bottom:26px}
+.pd-share-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+.pd-share-btn{border:none;background:var(--soft);padding:16px 8px;border-radius:16px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px;font-size:.6rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--black);font-weight:600;transition:.3s var(--ease)}
+.pd-share-btn:hover{transform:translateY(-3px);background:#fff;box-shadow:var(--shadow-m)}
+.pd-share-btn i{font-size:1.4rem}
+.pd-share-btn.wa i{color:var(--green)}
+.pd-share-btn.ig i{color:#E1306C}
+.pd-share-btn.fb i{color:#1877F2}
+.pd-share-btn.cp i{color:var(--black)}
+.pd-share-close{background:none;border:1px solid var(--divider);padding:10px 20px;border-radius:100px;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-weight:600;color:var(--grey)}
+.pd-share-close:hover{border-color:var(--red);color:var(--red)}
+
+/* ============ ZOOM LIGHTBOX ============ */
+#lightbox{position:fixed;inset:0;background:rgba(0,0,0,.94);z-index:8000;display:none;align-items:center;justify-content:center;padding:40px;cursor:zoom-out}
+#lightbox.on{display:flex;animation:pdFade .3s}
+#lightbox img{max-width:90vw;max-height:90vh;object-fit:contain}
+#lightbox .close-lb{position:absolute;top:22px;right:22px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.12);border:none;color:#fff;font-size:1.2rem;cursor:pointer;backdrop-filter:blur(6px)}
+
+/* ============ WISHLIST PANEL ============ */
+#wishPanel{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:#fff;z-index:5000;box-shadow:-20px 0 60px rgba(0,0,0,.15);transform:translateX(100%);transition:.5s var(--ease);display:flex;flex-direction:column}
+#wishPanel.open{transform:translateX(0)}
+#wishOverlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:4999;opacity:0;pointer-events:none;transition:.4s}
+#wishOverlay.on{opacity:1;pointer-events:auto}
+.wish-head{padding:22px 24px;border-bottom:1px solid var(--divider);display:flex;align-items:center;justify-content:space-between}
+.wish-head h3{font-family:var(--f-display);font-size:1.6rem;font-weight:500}
+.wish-head h3 span{font-family:var(--f-body);font-size:.75rem;font-weight:500;color:var(--grey);letter-spacing:1.5px;text-transform:uppercase;margin-left:8px}
+.wish-close{width:36px;height:36px;border-radius:50%;background:var(--soft);border:none;cursor:pointer;font-size:.95rem}
+.wish-close:hover{background:var(--red);color:#fff}
+.wish-body{flex:1;overflow-y:auto;padding:20px 24px}
+.wish-item{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--divider)}
+.wish-item img{width:70px;height:70px;object-fit:contain;background:var(--soft);border-radius:10px;padding:6px;flex-shrink:0;cursor:pointer}
+.wish-item-info{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:space-between}
+.wish-item-name{font-size:.82rem;font-weight:500;line-height:1.4;color:var(--black);cursor:pointer;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.wish-item-row{display:flex;justify-content:space-between;align-items:center;margin-top:6px}
+.wish-item-price{font-weight:600;font-size:.9rem}
+.wish-item-remove{background:none;border:none;color:var(--grey);cursor:pointer;font-size:.85rem;padding:4px 8px;border-radius:6px}
+.wish-item-remove:hover{background:var(--red-dim);color:var(--red)}
+.wish-empty{padding:60px 20px;text-align:center;color:var(--grey)}
+.wish-empty i{font-size:3rem;color:var(--grey-2);margin-bottom:14px;display:block}
+.wish-empty h4{font-family:var(--f-display);font-size:1.5rem;color:var(--black);font-weight:400;margin-bottom:8px}
+.wish-empty p{font-size:.82rem}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:960px){
+  .hdr-nav{display:none}
+  .hdr-menu-btn{display:flex}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .foot-top{grid-template-columns:1fr 1fr;gap:36px}
+  .store-block{grid-template-columns:1fr}
+  .store-map{min-height:300px}
+  .pd-main{grid-template-columns:1fr;gap:30px}
+  .pd-gallery{position:static}
+}
+@media(max-width:640px){
+  .product-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .pc-name{font-size:.78rem;-webkit-line-clamp:2}
+  .pc-price{font-size:.92rem}
+  .pc-body{padding:14px 12px 16px}
+  .foot-top{grid-template-columns:1fr}
+  .store-info{padding:32px 24px}
+  .pd-actions-row{grid-template-columns:1fr}
+  .pd-meta{grid-template-columns:1fr}
+  #floatDock{right:14px;bottom:14px}
+  #floatDock .fdock-main{width:54px;height:54px;font-size:1.35rem}
+  .fdock-item{width:46px;height:46px;font-size:1rem}
+  #scrollTop{left:14px;bottom:14px;width:42px;height:42px}
+  .search-suggest-name{white-space:normal;-webkit-line-clamp:2;display:-webkit-box;-webkit-box-orient:vertical}
+}
+@media(max-width:400px){
+  .product-grid{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ LOADER ============ -->
+<div id="loader">
+  <div class="loader-mark">M</div>
+  <div class="loader-logo">Miniso</div>
+  <div class="loader-sub">Jayanagar · Bengaluru</div>
+  <div class="loader-bar"><span></span></div>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header id="hdr">
+  <div class="hdr-brand" onclick="goHome()">
+    <div class="hdr-mark">M</div>
+    <div class="hdr-txt">
+      <div class="hdr-logo">Miniso</div>
+      <div class="hdr-sub">Jayanagar</div>
+    </div>
+  </div>
+  <nav class="hdr-nav">
+    <a onclick="goHome();scrollToId('shop')">Shop</a>
+    <a onclick="goHome();scrollToId('categories')">Categories</a>
+    <a onclick="goHome();scrollToId('featured')">Featured</a>
+    <a onclick="goHome();scrollToId('new')">New</a>
+    <a onclick="goHome();scrollToId('best')">Best Sellers</a>
+    <a onclick="goHome();scrollToId('store')">Store</a>
+  </nav>
+  <div class="hdr-right">
+    <button class="hdr-ic" onclick="openSearch()" aria-label="Search"><i class="fas fa-search"></i></button>
+    <button class="hdr-ic" onclick="openWishlist()" aria-label="Wishlist"><i class="far fa-heart"></i><span class="badge" id="wishBadge"></span></button>
+    <button class="hdr-menu-btn" onclick="openMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ============ SEARCH DROPDOWN ============ -->
+<div id="searchDrop">
+  <div class="search-wrap-top">
+    <div class="search-input-wrap">
+      <i class="fas fa-search"></i>
+      <input type="text" id="searchTop" class="search-input-top" placeholder="Search premium products, categories, SKUs…" autocomplete="off">
+      <button class="close-s" onclick="closeSearch()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="search-suggests" id="searchSuggests">
+      <div class="search-suggest-title">Quick Suggestions</div>
+      <div class="search-quick">
+        <span onclick="quickSearch('perfume')">Perfume</span>
+        <span onclick="quickSearch('mask')">Face Mask</span>
+        <span onclick="quickSearch('toothbrush')">Toothbrush</span>
+        <span onclick="quickSearch('mirror')">Mirror</span>
+        <span onclick="quickSearch('pen')">Pen</span>
+        <span onclick="quickSearch('travel')">Travel</span>
+        <span onclick="quickSearch('plush')">Plush Toy</span>
+        <span onclick="quickSearch('socks')">Socks</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ MOBILE MENU ============ -->
+<div id="mobmenu">
+  <button class="mm-close" onclick="closeMenu()"><i class="fas fa-times"></i></button>
+  <a onclick="closeMenu();goHome()">Home</a>
+  <a onclick="closeMenu();goHome();scrollToId('shop')">Shop</a>
+  <a onclick="closeMenu();goHome();scrollToId('categories')">Categories</a>
+  <a onclick="closeMenu();goHome();scrollToId('featured')">Featured</a>
+  <a onclick="closeMenu();goHome();scrollToId('new')">New Arrivals</a>
+  <a onclick="closeMenu();goHome();scrollToId('best')">Best Sellers</a>
+  <a onclick="closeMenu();goHome();scrollToId('reviews')">Reviews</a>
+  <a onclick="closeMenu();goHome();scrollToId('store')">Store</a>
+  <div class="mm-social">
+    <a href="https://www.instagram.com/miniso__jayanagar?igsh=MXBrN2N6cWp0dnp6Mg==" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+    <a href="https://wa.me/917259352730" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+    <a href="tel:+917259352730"><i class="fas fa-phone"></i></a>
+  </div>
+</div>
+
+<!-- ============ HOME VIEW ============ -->
+<main id="homeView">
+  <span id="top"></span>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grad"></div>
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Official Flagship · Bengaluru</div>
+      <h1 class="hero-title"><span><i>Elevate</i></span><span><i>Everyday.</i></span></h1>
+      <div class="hero-line"></div>
+      <p class="hero-desc">Premium lifestyle products, curated for those who notice the details. Enquire on WhatsApp for instant in-store availability at MINISO Jayanagar.</p>
+      <a class="hero-cta" onclick="scrollToId('shop')"><span>Explore Collection</span> <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="hero-scroll"><span>Scroll</span><i></i></div>
+  </section>
+
+  <!-- STORE STATUS -->
+  <div class="store-status">
+    <span class="st-loc"><i class="fas fa-location-dot"></i>Jayanagar, Bengaluru</span>
+    <span class="sep">·</span>
+    <span class="st-time"><i class="far fa-clock"></i>10:00 AM – 10:00 PM</span>
+    <span class="sep">·</span>
+    <span id="statusPill"><span class="dot"></span>Open Now</span>
+    <span class="sep">·</span>
+    <a class="st-tel" href="tel:+917259352730"><i class="fas fa-phone"></i>+91 72593 52730</a>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div><div class="stat-n" data-count="2900">0</div><div class="stat-l">Products</div></div>
+    <div><div class="stat-n" data-count="13">0</div><div class="stat-l">Categories</div></div>
+    <div><div class="stat-n" data-count="12">0</div><div class="stat-l">Hours Daily</div></div>
+    <div><div class="stat-n">★ 4.8</div><div class="stat-l">Google Rating</div></div>
+  </div>
+
+  <!-- STATEMENT -->
+  <section class="sec statement">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow">Our Philosophy</div>
+      <h2 class="sec-title">Designed For <em>Everyday Luxury.</em></h2>
+      <p class="sec-sub">We believe exceptional design shouldn't be a privilege. MINISO Jayanagar brings the quiet confidence of premium craftsmanship to Bengaluru — every object intentional, considered, and beautiful. Message us on WhatsApp and we'll confirm availability instantly.</p>
+    </div>
+  </section>
+
+  <!-- CATEGORY TILES -->
+  <section id="categories" class="sec">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow">Shop by Category</div>
+      <h2 class="sec-title">Explore <em>Every Corner.</em></h2>
+      <p class="sec-sub">Thirteen curated departments across lifestyle, beauty, stationery, apparel and more.</p>
+    </div>
+    <div class="cat-grid reveal r-d1" id="catGrid"></div>
+  </section>
+
+  <!-- FEATURED -->
+  <section id="featured" class="sec statement">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow">Editor's Picks</div>
+      <h2 class="sec-title">Featured <em>This Week.</em></h2>
+      <p class="sec-sub">Hand-selected pieces from our merchandising team.</p>
+    </div>
+    <div class="h-scroll reveal r-d1" id="featuredScroll"></div>
+  </section>
+
+  <!-- SHOP / MAIN GRID -->
+  <section id="shop" class="sec">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow">Curated For You</div>
+      <h2 class="sec-title">The <em>Collection</em></h2>
+      <p class="sec-sub">Browse the full flagship inventory. Tap any product for details and WhatsApp availability check.</p>
+    </div>
+    <div class="tools reveal">
+      <div class="search-wrap">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" id="searchInput" class="search-input" placeholder="Search the collection…" autocomplete="off">
+        <button class="scan-btn" onclick="openScanner()"><i class="fas fa-barcode"></i> Scan</button>
+      </div>
+      <div class="sub-filters reveal r-d1" id="subFilters"></div>
+    </div>
+    <div class="count-display" id="countDisplay"></div>
+    <div class="product-grid" id="grid"></div>
+    <button class="load-more" id="loadMore" style="display:none" onclick="loadMore()">Load More</button>
+  </section>
+
+  <!-- BEST SELLERS -->
+  <section id="best" class="sec statement">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow">Most Loved</div>
+      <h2 class="sec-title">Best <em>Sellers.</em></h2>
+      <p class="sec-sub">The fan favourites — always in demand at our Jayanagar flagship.</p>
+    </div>
+    <div class="h-scroll reveal r-d1" id="bestScroll"></div>
+  </section>
+
+  <!-- NEW ARRIVALS -->
+  <section id="new" class="sec">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow">Just Landed</div>
+      <h2 class="sec-title">New <em>Arrivals.</em></h2>
+      <p class="sec-sub">The freshest additions to our flagship — discover the latest premium finds.</p>
+    </div>
+    <div class="h-scroll reveal r-d1" id="newScroll"></div>
+  </section>
+
+  <!-- RECENTLY VIEWED -->
+  <section id="recent" class="sec statement" style="display:none">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow">Continue Browsing</div>
+      <h2 class="sec-title">Recently <em>Viewed.</em></h2>
+    </div>
+    <div class="h-scroll reveal r-d1" id="recentScroll"></div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews" class="sec">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow">Customer Love</div>
+      <h2 class="sec-title">What Bengaluru <em>Says.</em></h2>
+      <p class="sec-sub">Real feedback from real customers who walked into our Jayanagar flagship.</p>
+    </div>
+    <div class="review-grid reveal r-d1" id="reviewGrid"></div>
+  </section>
+
+  <!-- STORE -->
+  <section id="store" class="sec statement">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow">Visit Us</div>
+      <h2 class="sec-title">MINISO <em>Jayanagar.</em></h2>
+      <p class="sec-sub">Come experience the collection in person. Free WhatsApp availability confirmation before you visit.</p>
+    </div>
+    <div class="store-block reveal r-d1">
+      <div class="store-map">
+        <iframe src="https://www.google.com/maps?q=Miniso+Jayanagar+Bengaluru&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="MINISO Jayanagar Location"></iframe>
+      </div>
+      <div class="store-info">
+        <h3>Flagship Store, <em>Jayanagar</em></h3>
+        <div class="st-row">
+          <i class="fas fa-location-dot"></i>
+          <div><div class="st-lbl">Address</div><div class="st-val">4th Block, Jayanagar<br>Bengaluru, Karnataka 560011</div></div>
+        </div>
+        <div class="st-row">
+          <i class="far fa-clock"></i>
+          <div><div class="st-lbl">Timings</div><div class="st-val">Mon – Sun · 10:00 AM – 10:00 PM</div><div id="storeStatus2" class="st-open"><span class="dot"></span>Open Now</div></div>
+        </div>
+        <div class="st-row">
+          <i class="fas fa-phone"></i>
+          <div><div class="st-lbl">Contact</div><div class="st-val"><a href="tel:+917259352730">+91 72593 52730</a></div></div>
+        </div>
+        <div class="st-row">
+          <i class="fab fa-whatsapp"></i>
+          <div><div class="st-lbl">WhatsApp</div><div class="st-val"><a href="https://wa.me/917259352730" target="_blank" rel="noopener">+91 72593 52730 · Message us</a></div></div>
+        </div>
+        <div class="store-actions">
+          <a class="sa-wa" href="https://wa.me/917259352730?text=Hi%20MINISO%20Jayanagar%2C%20I'd%20like%20to%20know%20more%20about%20your%20store." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i>WhatsApp</a>
+          <a class="sa-call" href="tel:+917259352730"><i class="fas fa-phone"></i>Call Store</a>
+          <a class="sa-map" href="https://www.google.com/maps/search/?api=1&query=Miniso+Jayanagar+Bengaluru" target="_blank" rel="noopener"><i class="fas fa-diamond-turn-right"></i>Directions</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ PRODUCT DETAIL VIEW ============ -->
+<section id="productView"></section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="foot-top">
+    <div class="foot-brand">
+      <h4>MINISO</h4>
+      <div class="foot-sub">Jayanagar · Bengaluru</div>
+      <p>The official flagship store of MINISO in Jayanagar. Bringing premium, thoughtfully designed lifestyle products to Bengaluru — one delighted customer at a time.</p>
+      <div class="foot-social">
+        <a href="https://www.instagram.com/miniso__jayanagar?igsh=MXBrN2N6cWp0dnp6Mg==" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/917259352730" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="tel:+917259352730" aria-label="Call"><i class="fas fa-phone"></i></a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Miniso+Jayanagar+Bengaluru" target="_blank" rel="noopener" aria-label="Location"><i class="fas fa-location-dot"></i></a>
+      </div>
+    </div>
+    <div class="foot-col">
+      <h5>Shop</h5>
+      <a onclick="goHome();scrollToId('shop')">All Products</a>
+      <a onclick="goHome();scrollToId('categories')">Categories</a>
+      <a onclick="goHome();scrollToId('new')">New Arrivals</a>
+      <a onclick="goHome();scrollToId('best')">Best Sellers</a>
+      <a onclick="goHome();scrollToId('featured')">Featured</a>
+    </div>
+    <div class="foot-col">
+      <h5>Store</h5>
+      <a onclick="goHome();scrollToId('store')">Visit Store</a>
+      <a onclick="goHome();scrollToId('reviews')">Reviews</a>
+      <p><i class="far fa-clock"></i>10 AM – 10 PM</p>
+      <p><i class="fas fa-location-dot"></i>Jayanagar, Bengaluru</p>
+    </div>
+    <div class="foot-col">
+      <h5>Contact</h5>
+      <p><i class="fas fa-phone"></i>+91 72593 52730</p>
+      <p><i class="fab fa-whatsapp"></i>+91 72593 52730</p>
+      <p><i class="fas fa-envelope"></i>hello@miniso-jayanagar.in</p>
+    </div>
+  </div>
+  <div class="foot-bot">
+    <p>© 2026 MINISO Jayanagar · Official Flagship Store · All Rights Reserved</p>
+    <div class="foot-legal">
+      <a>Privacy</a><a>Terms</a><a>Contact</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ FLOATING DOCK ============ -->
+<div id="floatDock" class="open">
+  <a class="fdock-item ig" href="https://www.instagram.com/miniso__jayanagar?igsh=MXBrN2N6cWp0dnp6Mg==" target="_blank" rel="noopener" data-label="Instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+  <a class="fdock-item map" href="https://www.google.com/maps/search/?api=1&query=Miniso+Jayanagar+Bengaluru" target="_blank" rel="noopener" data-label="Directions" aria-label="Directions"><i class="fas fa-diamond-turn-right"></i></a>
+  <a class="fdock-item call" href="tel:+917259352730" data-label="Call Store" aria-label="Call"><i class="fas fa-phone"></i></a>
+  <a class="fdock-item fdock-main pulse" href="https://wa.me/917259352730?text=Hi%20MINISO%20Jayanagar%2C%20I'd%20like%20to%20enquire%20about%20your%20products." target="_blank" rel="noopener" data-label="WhatsApp Us" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+</div>
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i></button>
+
+<!-- ============ TOAST ============ -->
+<div id="toast"><i class="fas fa-check-circle"></i><span id="toastMsg"></span></div>
+
+<!-- ============ WISHLIST PANEL ============ -->
+<div id="wishOverlay" onclick="closeWishlist()"></div>
+<aside id="wishPanel">
+  <div class="wish-head">
+    <h3>Wishlist<span id="wishCountTxt"></span></h3>
+    <button class="wish-close" onclick="closeWishlist()"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="wish-body" id="wishBody"></div>
+</aside>
+
+<!-- ============ SHARE POPOVER ============ -->
+<div class="pd-share-pop" id="sharePop" onclick="if(event.target===this)closeShare()">
+  <div class="pd-share-card">
+    <h4>Share this product</h4>
+    <p id="shareProdName" style="font-family:var(--f-display);font-style:italic">—</p>
+    <div class="pd-share-grid">
+      <button class="pd-share-btn wa" onclick="shareTo('wa')"><i class="fab fa-whatsapp"></i>WhatsApp</button>
+      <button class="pd-share-btn ig" onclick="shareTo('ig')"><i class="fab fa-instagram"></i>Instagram</button>
+      <button class="pd-share-btn fb" onclick="shareTo('fb')"><i class="fab fa-facebook-f"></i>Facebook</button>
+      <button class="pd-share-btn cp" onclick="shareTo('copy')"><i class="fas fa-link"></i>Copy Link</button>
+    </div>
+    <button class="pd-share-close" onclick="closeShare()">Cancel</button>
+  </div>
+</div>
+
+<!-- ============ LIGHTBOX ============ -->
+<div id="lightbox" onclick="closeLightbox()">
+  <button class="close-lb" onclick="event.stopPropagation();closeLightbox()"><i class="fas fa-times"></i></button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<script>
+/* ==================================================================
+   MINISO JAYANAGAR — Premium SPA
+   ================================================================== */
+const STORE = {
+  name: 'MINISO Jayanagar',
+  phone: '917259352730',
+  phoneDisplay: '+91 72593 52730',
+  address: '4th Block, Jayanagar, Bengaluru, Karnataka 560011',
+  hours: { open: 10, close: 22 }, // 10 AM – 10 PM
+  ig: 'https://www.instagram.com/miniso__jayanagar?igsh=MXBrN2N6cWp0dnp6Mg==',
+  map: 'https://www.google.com/maps/search/?api=1&query=Miniso+Jayanagar+Bengaluru'
+};
+
+let PRODUCTS = [];
+let filtered = [];
+let currentCat = 'All';
+let currentSub = 'All';
+let displayed = 40;
+const PAGE = 24;
+
+/* ---------- utils ---------- */
+const $ = (id) => document.getElementById(id);
+const fmtPrice = (p) => '₹' + Math.round(parseFloat(p) || 0).toLocaleString('en-IN');
+const slugify = (s) => (s||'').toString().toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+const escapeHtml = (s) => (s||'').toString().replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+
+function isOpenNow(){
+  const h = new Date().getHours() + new Date().getMinutes()/60;
+  return h >= STORE.hours.open && h < STORE.hours.close;
+}
+function updateOpenStatus(){
+  const open = isOpenNow();
+  const pill = $('statusPill');
+  if (pill) pill.innerHTML = `<span class="dot ${open?'':'closed'}"></span>${open?'Open Now':'Closed'}`;
+  const s2 = $('storeStatus2');
+  if (s2){ s2.classList.toggle('closed', !open); s2.innerHTML = `<span class="dot"></span>${open?'Open Now · Closes 10 PM':'Closed · Opens 10 AM'}`; }
+}
+
+/* ---------- Deterministic “badge” assignment (stable per product) ---------- */
+function hashCode(s){ let h=0; for(let i=0;i<s.length;i++){h=((h<<5)-h+s.charCodeAt(i))|0} return Math.abs(h); }
+function productBadges(p){
+  const h = hashCode(p.sku);
+  const out = [];
+  if (h % 7 === 0) out.push({cls:'new', label:'🆕 New Arrival'});
+  else if (h % 5 === 0) out.push({cls:'hot', label:'🔥 Best Seller'});
+  else if (h % 11 === 0) out.push({cls:'trend', label:'❤️ Trending'});
+  else if (h % 17 === 0) out.push({cls:'ltd', label:'🎁 Limited Edition'});
+  return out;
+}
+function productRating(p){
+  const h = hashCode(p.sku);
+  const r = 4.2 + ((h % 80) / 100); // 4.20 – 4.99
+  const count = 12 + (h % 240);
+  return { rating: r.toFixed(1), count };
+}
+function starHTML(r){
+  const full = Math.floor(r);
+  const half = (r - full) >= 0.5;
+  let out = '';
+  for (let i=0;i<full;i++) out += '<i class="fas fa-star"></i>';
+  if (half) out += '<i class="fas fa-star-half-alt"></i>';
+  for (let i=full+(half?1:0); i<5; i++) out += '<i class="far fa-star"></i>';
+  return out;
+}
+
+/* ---------- WhatsApp deep-link ---------- */
+function waProductLink(p){
+  const msg =
+`Hi ${STORE.name}, I'm interested in this product.
+
+Product Name: ${p.name}
+Price: ${fmtPrice(p.price)}
+SKU: ${p.sku}
+
+Is this product currently available in your store? If yes, could you please confirm the availability? Thank you.`;
+  return `https://wa.me/${STORE.phone}?text=${encodeURIComponent(msg)}`;
+}
+function waStoreLink(){
+  return `https://wa.me/${STORE.phone}?text=${encodeURIComponent(`Hi ${STORE.name}, I'd like to enquire about your products.`)}`;
+}
+
+/* ---------- Card render ---------- */
+function productCard(p){
+  const badges = productBadges(p);
+  const rat = productRating(p);
+  const isWish = WISH.has(p.sku);
+  return `
+  <article class="product-card" data-sku="${p.sku}">
+    <div class="pc-img-wrap" onclick="openProduct('${p.sku}')">
+      <div class="pc-badges">${badges.map(b=>`<span class="pc-badge ${b.cls}">${b.label}</span>`).join('')}</div>
+      <button class="pc-wish ${isWish?'active':''}" onclick="event.stopPropagation();toggleWish('${p.sku}',this)" aria-label="Wishlist"><i class="${isWish?'fas':'far'} fa-heart"></i></button>
+      <img class="pc-img" src="${p.img}" alt="${escapeHtml(p.name)}" loading="lazy" onerror="this.style.opacity=0.15;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect fill=%22%23f5f5f5%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%22 y=%2255%22 text-anchor=%22middle%22 font-family=%22serif%22 font-size=%2226%22 fill=%22%23bbb%22%3EM%3C/text%3E%3C/svg%3E'">
+    </div>
+    <div class="pc-body">
+      <div class="pc-cat">${escapeHtml(p.cat||'')}</div>
+      <div class="pc-name" onclick="openProduct('${p.sku}')">${escapeHtml(p.name)}</div>
+      <div class="pc-rating"><span class="stars">${starHTML(parseFloat(rat.rating))}</span><span class="count">${rat.rating} (${rat.count})</span></div>
+      <div class="pc-foot">
+        <div class="pc-price"><small>₹</small>${Math.round(parseFloat(p.price)).toLocaleString('en-IN')}</div>
+        <a class="pc-wa" href="${waProductLink(p)}" target="_blank" rel="noopener" title="Enquire on WhatsApp" onclick="event.stopPropagation()"><i class="fab fa-whatsapp"></i></a>
+      </div>
+      <button class="pc-enquire-btn" onclick="event.stopPropagation();window.open('${waProductLink(p)}','_blank')"><i class="fab fa-whatsapp"></i> Check Availability</button>
+    </div>
+  </article>`;
+}
+
+/* ---------- Grid + filters ---------- */
+function renderGrid(){
+  const grid = $('grid');
+  const list = filtered.slice(0, displayed);
+  if (list.length === 0){
+    grid.innerHTML = `<div class="empty-state"><i class="fas fa-search"></i><h4>No products found</h4><p>Try a different search or category.</p></div>`;
+    $('loadMore').style.display = 'none';
+    $('countDisplay').innerHTML = `<strong>0</strong> Products`;
+    return;
+  }
+  grid.innerHTML = list.map(productCard).join('');
+  $('loadMore').style.display = filtered.length > displayed ? 'block' : 'none';
+  $('countDisplay').innerHTML = `Showing <strong>${list.length}</strong> of <strong>${filtered.length}</strong> Products`;
+  observeReveal();
+}
+function loadMore(){ displayed += PAGE; renderGrid(); }
+
+function applyFilters(){
+  const q = ($('searchInput').value || '').trim().toLowerCase();
+  filtered = PRODUCTS.filter(p => {
+    if (currentCat !== 'All' && p.cat !== currentCat) return false;
+    if (currentSub !== 'All' && p.subCat !== currentSub) return false;
+    if (q){
+      const hay = (p.name+' '+p.cat+' '+p.subCat+' '+p.sku+' '+(p.barcode||'')).toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  });
+  displayed = PAGE;
+  renderGrid();
+}
+
+function renderSubFilters(){
+  const el = $('subFilters');
+  const cats = ['All', ...new Set(PRODUCTS.map(p=>p.cat).filter(Boolean))];
+  el.innerHTML = cats.map(c=>`<button class="sub-chip ${c===currentCat?'active':''}" onclick="setCat('${escapeHtml(c)}')">${escapeHtml(c)}</button>`).join('');
+}
+function setCat(c){ currentCat = c; currentSub='All'; renderSubFilters(); applyFilters(); }
+function menuSelectCat(c){ setCat(c); scrollToId('shop'); }
+
+/* ---------- Category tiles ---------- */
+const CAT_META = {
+  'Life Department':          { icon:'fa-house-chimney',       color:'#E21B24' },
+  'Personal Care &  Cleaning':{ icon:'fa-pump-soap',            color:'#16A34A' },
+  'Makeup Tools':             { icon:'fa-wand-magic-sparkles',  color:'#FF6B9D' },
+  'Scented Products':         { icon:'fa-spray-can-sparkles',   color:'#C9A961' },
+  'Stationery & Gift':        { icon:'fa-pen-nib',              color:'#3B82F6' },
+  'Apparel & Accessories':    { icon:'fa-shirt',                color:'#8B5CF6' },
+  'Electronic Devices':       { icon:'fa-headphones',           color:'#0EA5E9' },
+  'Accessory':                { icon:'fa-gem',                  color:'#F59E0B' },
+  'Skincare':                 { icon:'fa-leaf',                 color:'#16A34A' },
+  'Plush Toy':                { icon:'fa-teddy-bear',           color:'#EC4899' },
+  'Cosmetics':                { icon:'fa-palette',              color:'#E21B24' },
+  'Trendy Toy':               { icon:'fa-cube',                 color:'#F59E0B' },
+  'Toy Series':               { icon:'fa-shapes',               color:'#8B5CF6' }
+};
+function renderCategories(){
+  const cats = [...new Set(PRODUCTS.map(p=>p.cat).filter(Boolean))];
+  const counts = {};
+  PRODUCTS.forEach(p => counts[p.cat] = (counts[p.cat]||0)+1);
+  $('catGrid').innerHTML = cats.map(c=>{
+    const m = CAT_META[c] || { icon:'fa-box', color:'#888' };
+    return `<div class="cat-tile" onclick="menuSelectCat('${escapeHtml(c)}')" style="background:linear-gradient(135deg, ${m.color}15, ${m.color}05)">
+      <div class="cat-icon" style="color:${m.color}"><i class="fas ${m.icon}"></i></div>
+      <div class="cat-info"><div class="cat-name">${escapeHtml(c)}</div><div class="cat-count">${counts[c]} Products</div></div>
+    </div>`;
+  }).join('');
+}
+
+/* ---------- Horizontal scrollers ---------- */
+function pickBy(fn, n=10){
+  const arr = PRODUCTS.filter(fn);
+  // stable "shuffle" by SKU hash
+  return arr.sort((a,b)=>hashCode(a.sku)-hashCode(b.sku)).slice(0, n);
+}
+function renderScrollers(){
+  $('featuredScroll').innerHTML = pickBy(p=>parseFloat(p.price)>=300, 12).map(productCard).join('');
+  $('bestScroll').innerHTML     = pickBy(p=>hashCode(p.sku)%5===0, 12).map(productCard).join('');
+  $('newScroll').innerHTML      = pickBy(p=>hashCode(p.sku)%7===0, 12).map(productCard).join('');
+}
+
+/* ---------- Reviews (demo) ---------- */
+const REVIEWS = [
+  {n:'Ananya S.', w:'2 weeks ago', r:5, t:"Loved the ambience and the range of skincare and stationery. The staff were super helpful, and I loved that I could message them on WhatsApp before visiting to confirm what was in stock. Highly recommend!"},
+  {n:'Rohan M.',  w:'1 month ago', r:5, t:"Best MINISO store in Bengaluru, hands down. Everything is arranged so beautifully — feels like a premium flagship. Picked up a perfume and some travel accessories."},
+  {n:'Priya K.',  w:'3 weeks ago', r:4, t:"Great collection of plush toys and cute stationery. WhatsApp enquiry saved me a trip when they were out of the one I wanted — got a heads up right away."},
+  {n:'Vikram R.', w:'5 days ago',  r:5, t:"Went in for a gift and ended up buying half the store 😅. Clean, well-lit, and the customer service is genuinely top-notch."},
+  {n:'Meera D.',  w:'1 week ago',  r:5, t:"The best part is how quickly they respond on WhatsApp. Confirmed the perfume was in stock before I drove all the way there. Total game changer for a local store."},
+  {n:'Karthik J.',w:'2 months ago',r:4, t:"Loved the makeup tools section. Prices are super reasonable and everything looks premium. Will definitely be back."}
+];
+function renderReviews(){
+  $('reviewGrid').innerHTML = REVIEWS.map(r=>`
+    <div class="review-card reveal">
+      <div class="review-head">
+        <div class="review-avatar">${r.n.charAt(0)}</div>
+        <div><div class="review-name">${r.n}</div><div class="review-when">${r.w}</div></div>
+      </div>
+      <div class="review-stars">${starHTML(r.r)}</div>
+      <div class="review-text">"${r.t}"</div>
+      <div class="review-verified"><i class="fas fa-circle-check"></i>Verified Visit</div>
+    </div>`).join('');
+}
+
+/* ---------- Product Detail ---------- */
+function openProduct(sku){
+  const p = PRODUCTS.find(x => x.sku === sku);
+  if (!p) return;
+  addRecentlyViewed(sku);
+  const badges = productBadges(p);
+  const rat = productRating(p);
+  const open = isOpenNow();
+  const similar = PRODUCTS
+    .filter(x => x.sku !== sku && (x.subCat === p.subCat || x.cat === p.cat))
+    .sort((a,b)=>hashCode(a.sku+sku)-hashCode(b.sku+sku))
+    .slice(0, 8);
+
+  // Multi image: use main image + 2 fallbacks derived from image URL (simulated angles)
+  const imgs = [p.img];
+  // provide 2 "variant" views: same image toned (simulated) — real MINISO API has -2/-3 patterns
+  const alt2 = p.img.replace(/-1\.(jpg|png|jpeg|webp)/i, '-2.$1');
+  const alt3 = p.img.replace(/-1\.(jpg|png|jpeg|webp)/i, '-3.$1');
+  if (alt2 !== p.img) imgs.push(alt2);
+  if (alt3 !== p.img) imgs.push(alt3);
+
+  const isWish = WISH.has(p.sku);
+  const view = $('productView');
+  view.innerHTML = `
+    <div class="pd-breadcrumb">
+      <a onclick="goHome()">Home</a>
+      <span class="sep">/</span>
+      <a onclick="goHome();setCat('${escapeHtml(p.cat)}')">${escapeHtml(p.cat)}</a>
+      <span class="sep">/</span>
+      <span class="curr">${escapeHtml(p.subCat||'')}</span>
+    </div>
+    <div class="pd-main">
+      <div class="pd-gallery">
+        <div class="pd-main-img" onclick="openLightbox(document.getElementById('pdMain').src)">
+          <div class="pd-badges-abs">${badges.map(b=>`<span class="pc-badge ${b.cls}">${b.label}</span>`).join('')}</div>
+          <img id="pdMain" src="${imgs[0]}" alt="${escapeHtml(p.name)}" onerror="this.style.opacity=0.2">
+          <div class="zoom-hint"><i class="fas fa-search-plus"></i> Click to zoom</div>
+        </div>
+        <div class="pd-thumbs">
+          ${imgs.map((im,i)=>`<div class="pd-thumb ${i===0?'active':''}" onclick="switchThumb(this,'${im}')"><img src="${im}" alt="thumb ${i+1}" onerror="this.parentElement.style.display='none'"></div>`).join('')}
+        </div>
+      </div>
+      <div class="pd-info">
+        <div class="pd-cat">${escapeHtml(p.cat||'')} · ${escapeHtml(p.subCat||'')}</div>
+        <h1 class="pd-name">${escapeHtml(p.name)}</h1>
+        <div class="pd-rating-row">
+          <span class="stars">${starHTML(parseFloat(rat.rating))}</span>
+          <span class="count">${rat.rating} · ${rat.count} reviews</span>
+        </div>
+        <div class="pd-price-row">
+          <div class="pd-price"><small>₹</small>${Math.round(parseFloat(p.price)).toLocaleString('en-IN')}</div>
+          <div class="pd-tax">Inclusive of all taxes</div>
+        </div>
+        <div class="pd-avail ${open?'':'closed'}"><span class="dot"></span>${open?'In Store · Open Now':'Store Closed · Enquire Anytime'}</div>
+        <p class="pd-desc">Experience premium craftsmanship with the <em>${escapeHtml(p.name)}</em>. A signature piece from our ${escapeHtml(p.subCat||p.cat)} collection at MINISO Jayanagar — thoughtfully designed, elegantly finished, and priced to bring everyday luxury within reach. Message us on WhatsApp for live in-store availability.</p>
+        <div class="pd-meta">
+          <div class="pd-meta-item"><span class="pd-meta-lbl">SKU</span><span class="pd-meta-val">${escapeHtml(p.sku)}</span></div>
+          <div class="pd-meta-item"><span class="pd-meta-lbl">Barcode</span><span class="pd-meta-val">${escapeHtml((p.barcode||'').split('/')[0])}</span></div>
+          <div class="pd-meta-item"><span class="pd-meta-lbl">Category</span><span class="pd-meta-val">${escapeHtml(p.cat)}</span></div>
+          <div class="pd-meta-item"><span class="pd-meta-lbl">Sub-Category</span><span class="pd-meta-val">${escapeHtml(p.subCat||'—')}</span></div>
+        </div>
+        <div class="pd-actions">
+          <button class="pd-btn pd-btn-primary" onclick="window.open('${waProductLink(p)}','_blank')">
+            <i class="fab fa-whatsapp"></i>Enquire on WhatsApp
+          </button>
+          <div class="pd-actions-row">
+            <button class="pd-icon-btn ${isWish?'active':''}" id="pdWishBtn" onclick="toggleWishPD('${p.sku}')"><i class="${isWish?'fas':'far'} fa-heart"></i>${isWish?'Wishlisted':'Wishlist'}</button>
+            <button class="pd-icon-btn" onclick="openShare('${p.sku}')"><i class="fas fa-share-nodes"></i>Share</button>
+          </div>
+        </div>
+        <ul class="pd-features">
+          <li><i class="fas fa-check-circle"></i>Original MINISO product from the official Jayanagar flagship</li>
+          <li><i class="fas fa-check-circle"></i>Check live availability via WhatsApp — instant reply</li>
+          <li><i class="fas fa-check-circle"></i>Pick up in-store · 10 AM – 10 PM · All days</li>
+          <li><i class="fas fa-check-circle"></i>Premium packaging · Perfect for gifting</li>
+        </ul>
+      </div>
+    </div>
+
+    ${similar.length ? `
+    <section class="sec" style="padding:40px 0 20px;max-width:none">
+      <div class="sec-head left reveal" style="margin-bottom:32px">
+        <div class="sec-eyebrow">You May Also Like</div>
+        <h2 class="sec-title" style="font-size:clamp(1.6rem,3.2vw,2.4rem)">Similar <em>Products</em></h2>
+      </div>
+      <div class="product-grid tight">${similar.map(productCard).join('')}</div>
+    </section>` : ''}
+
+    ${RECENT.length > 1 ? `
+    <section class="sec statement" style="max-width:none;margin:60px -80px 0;padding:60px 80px;border-radius:24px">
+      <div class="sec-head left reveal" style="margin-bottom:32px">
+        <div class="sec-eyebrow">Continue Browsing</div>
+        <h2 class="sec-title" style="font-size:clamp(1.6rem,3.2vw,2.4rem)">Recently <em>Viewed</em></h2>
+      </div>
+      <div class="h-scroll">${RECENT.filter(s=>s!==sku).map(s=>PRODUCTS.find(p=>p.sku===s)).filter(Boolean).map(productCard).join('')}</div>
+    </section>` : ''}
+  `;
+  $('homeView').style.display = 'none';
+  view.classList.add('on');
+  window.scrollTo({top:0,behavior:'instant'});
+  observeReveal();
+  history.pushState({sku}, '', '#p/' + sku);
+}
+function switchThumb(el, src){
+  document.querySelectorAll('.pd-thumb').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  $('pdMain').src = src;
+}
+function goHome(){
+  $('productView').classList.remove('on');
+  $('homeView').style.display = '';
+  if (location.hash.startsWith('#p/')) history.pushState({}, '', location.pathname);
+}
+window.addEventListener('popstate', () => {
+  if (location.hash.startsWith('#p/')){
+    const sku = location.hash.slice(3);
+    openProduct(sku);
+  } else {
+    goHome();
+  }
+});
+
+/* ---------- Wishlist ---------- */
+const WISH = new Set(JSON.parse(localStorage.getItem('mj_wish') || '[]'));
+function saveWish(){ localStorage.setItem('mj_wish', JSON.stringify([...WISH])); updateWishBadge(); }
+function updateWishBadge(){
+  const c = WISH.size;
+  $('wishBadge').textContent = c > 0 ? c : '';
+  $('wishCountTxt').textContent = c > 0 ? '· ' + c : '';
+}
+function toggleWish(sku, btn){
+  if (WISH.has(sku)){ WISH.delete(sku); toast('Removed from wishlist','fa-heart-crack'); }
+  else { WISH.add(sku); toast('Added to wishlist','fa-heart',true); }
+  saveWish();
+  // sync all card icons for this sku
+  document.querySelectorAll(`.product-card[data-sku="${sku}"] .pc-wish`).forEach(b=>{
+    const on = WISH.has(sku);
+    b.classList.toggle('active', on);
+    b.innerHTML = `<i class="${on?'fas':'far'} fa-heart"></i>`;
+  });
+  renderWishlist();
+}
+function toggleWishPD(sku){
+  toggleWish(sku);
+  const on = WISH.has(sku);
+  const btn = $('pdWishBtn');
+  if (btn){
+    btn.classList.toggle('active', on);
+    btn.innerHTML = `<i class="${on?'fas':'far'} fa-heart"></i>${on?'Wishlisted':'Wishlist'}`;
+  }
+}
+function openWishlist(){ renderWishlist(); $('wishPanel').classList.add('open'); $('wishOverlay').classList.add('on'); document.body.classList.add('noscroll'); }
+function closeWishlist(){ $('wishPanel').classList.remove('open'); $('wishOverlay').classList.remove('on'); document.body.classList.remove('noscroll'); }
+function renderWishlist(){
+  const items = [...WISH].map(sku => PRODUCTS.find(p=>p.sku===sku)).filter(Boolean);
+  const body = $('wishBody');
+  if (items.length === 0){
+    body.innerHTML = `<div class="wish-empty"><i class="far fa-heart"></i><h4>Your wishlist is empty</h4><p>Save your favourites here and enquire on WhatsApp when you're ready.</p></div>`;
+    return;
+  }
+  body.innerHTML = items.map(p=>`
+    <div class="wish-item">
+      <img src="${p.img}" onclick="closeWishlist();openProduct('${p.sku}')" onerror="this.style.opacity=.2">
+      <div class="wish-item-info">
+        <div class="wish-item-name" onclick="closeWishlist();openProduct('${p.sku}')">${escapeHtml(p.name)}</div>
+        <div class="wish-item-row">
+          <div class="wish-item-price">${fmtPrice(p.price)}</div>
+          <div style="display:flex;gap:4px">
+            <a class="pc-wa" style="width:32px;height:32px;font-size:.8rem" href="${waProductLink(p)}" target="_blank" rel="noopener" title="Enquire"><i class="fab fa-whatsapp"></i></a>
+            <button class="wish-item-remove" onclick="toggleWish('${p.sku}')" title="Remove"><i class="fas fa-times"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+/* ---------- Recently Viewed ---------- */
+let RECENT = JSON.parse(localStorage.getItem('mj_recent') || '[]');
+function addRecentlyViewed(sku){
+  RECENT = [sku, ...RECENT.filter(s => s !== sku)].slice(0, 12);
+  localStorage.setItem('mj_recent', JSON.stringify(RECENT));
+  renderRecent();
+}
+function renderRecent(){
+  const items = RECENT.map(s=>PRODUCTS.find(p=>p.sku===s)).filter(Boolean);
+  const sec = $('recent'), sc = $('recentScroll');
+  if (!sec || !sc) return;
+  if (items.length < 2){ sec.style.display='none'; return; }
+  sec.style.display = '';
+  sc.innerHTML = items.map(productCard).join('');
+}
+
+/* ---------- Share ---------- */
+let SHARE_SKU = null;
+function openShare(sku){
+  SHARE_SKU = sku;
+  const p = PRODUCTS.find(x=>x.sku===sku);
+  $('shareProdName').textContent = p ? p.name : '';
+  $('sharePop').classList.add('on');
+  document.body.classList.add('noscroll');
+}
+function closeShare(){ $('sharePop').classList.remove('on'); document.body.classList.remove('noscroll'); }
+function shareTo(kind){
+  const p = PRODUCTS.find(x=>x.sku===SHARE_SKU); if (!p) return;
+  const url = `${location.origin}${location.pathname}#p/${p.sku}`;
+  const txt = `Check out this from MINISO Jayanagar — ${p.name} · ${fmtPrice(p.price)} · ${url}`;
+  if (kind==='wa') window.open(`https://wa.me/?text=${encodeURIComponent(txt)}`,'_blank');
+  else if (kind==='fb') window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,'_blank');
+  else if (kind==='ig'){ navigator.clipboard.writeText(txt); toast('Link copied — paste into Instagram DM','fa-instagram',true); }
+  else if (kind==='copy'){ navigator.clipboard.writeText(url); toast('Link copied to clipboard','fa-check',true); }
+  closeShare();
+}
+
+/* ---------- Search dropdown (live suggestions) ---------- */
+function openSearch(){ $('searchDrop').classList.add('open'); setTimeout(()=>$('searchTop').focus(),120); }
+function closeSearch(){ $('searchDrop').classList.remove('open'); }
+function quickSearch(q){ $('searchTop').value = q; runLiveSearch(q); }
+function runLiveSearch(q){
+  q = (q||'').trim().toLowerCase();
+  const box = $('searchSuggests');
+  if (!q){
+    box.innerHTML = `<div class="search-suggest-title">Quick Suggestions</div>
+      <div class="search-quick">
+        <span onclick="quickSearch('perfume')">Perfume</span>
+        <span onclick="quickSearch('mask')">Face Mask</span>
+        <span onclick="quickSearch('toothbrush')">Toothbrush</span>
+        <span onclick="quickSearch('mirror')">Mirror</span>
+        <span onclick="quickSearch('pen')">Pen</span>
+        <span onclick="quickSearch('travel')">Travel</span>
+        <span onclick="quickSearch('plush')">Plush Toy</span>
+        <span onclick="quickSearch('socks')">Socks</span>
+      </div>`;
+    return;
+  }
+  const hits = PRODUCTS.filter(p =>
+    (p.name+' '+p.cat+' '+p.subCat+' '+p.sku+' '+(p.barcode||'')).toLowerCase().includes(q)
+  ).slice(0, 12);
+  if (hits.length === 0){
+    box.innerHTML = `<div class="search-empty"><i class="fas fa-magnifying-glass"></i>No matches for "<b>${escapeHtml(q)}</b>"<br><span style="font-size:.75rem">Try "perfume", "mask", "pen" or "travel"</span></div>`;
+    return;
+  }
+  box.innerHTML = `<div class="search-suggest-title">${hits.length} matches</div>` + hits.map(p=>`
+    <div class="search-suggest-item" onclick="closeSearch();openProduct('${p.sku}')">
+      <img src="${p.img}" onerror="this.style.opacity=.15">
+      <div class="search-suggest-info">
+        <div class="search-suggest-name">${escapeHtml(p.name)}</div>
+        <div class="search-suggest-cat">${escapeHtml(p.cat||'')} · ${escapeHtml(p.subCat||'')}</div>
+      </div>
+      <div class="search-suggest-price">${fmtPrice(p.price)}</div>
+    </div>`).join('');
+}
+
+/* ---------- Lightbox ---------- */
+function openLightbox(src){ $('lightboxImg').src = src; $('lightbox').classList.add('on'); document.body.classList.add('noscroll'); }
+function closeLightbox(){ $('lightbox').classList.remove('on'); document.body.classList.remove('noscroll'); }
+
+/* ---------- Menus ---------- */
+function openMenu(){ $('mobmenu').classList.add('open'); document.body.classList.add('noscroll'); }
+function closeMenu(){ $('mobmenu').classList.remove('open'); document.body.classList.remove('noscroll'); }
+function scrollToId(id){ setTimeout(()=>{ const el=$(id); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); }, 60); }
+
+/* ---------- Toast ---------- */
+function toast(msg, icon='fa-check-circle', success=true){
+  $('toastMsg').textContent = msg;
+  const t = $('toast');
+  t.classList.toggle('success', !!success);
+  t.querySelector('i').className = 'fas ' + icon;
+  t.classList.add('show');
+  clearTimeout(window.__toastTimer);
+  window.__toastTimer = setTimeout(()=>t.classList.remove('show'), 2200);
+}
+
+/* ---------- Barcode scanner (placeholder — camera opens in supported devices) ---------- */
+function openScanner(){
+  toast('Barcode scanner is a demo — search SKU instead','fa-barcode');
+  setTimeout(()=>{ $('searchInput').focus(); $('searchInput').placeholder = 'Type SKU or barcode…'; }, 200);
+}
+
+/* ---------- Counters ---------- */
+function animateCount(el, target){
+  const start = performance.now();
+  const dur = 1400;
+  function step(t){
+    const p = Math.min(1, (t-start)/dur);
+    const v = Math.floor(p * target);
+    el.textContent = v.toLocaleString('en-IN');
+    if (p<1) requestAnimationFrame(step);
+    else el.textContent = target.toLocaleString('en-IN') + (target>=100?'+':'');
+  }
+  requestAnimationFrame(step);
+}
+
+/* ---------- Reveal on scroll ---------- */
+let revealObs;
+function observeReveal(){
+  if (!revealObs){
+    revealObs = new IntersectionObserver((entries)=>{
+      entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); revealObs.unobserve(e.target); } });
+    }, { threshold: 0.10, rootMargin: '0px 0px -40px 0px' });
+  }
+  document.querySelectorAll('.reveal:not(.in)').forEach(el => revealObs.observe(el));
+}
+
+/* ---------- Header on scroll + scrollTop ---------- */
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  $('hdr').classList.toggle('scrolled', y > 40);
+  $('scrollTop').classList.toggle('show', y > 500);
+}, {passive:true});
+
+/* ---------- Search input wiring ---------- */
+$('searchInput').addEventListener('input', () => { applyFilters(); });
+$('searchTop').addEventListener('input', (e) => runLiveSearch(e.target.value));
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape'){ closeSearch(); closeMenu(); closeShare(); closeLightbox(); closeWishlist(); }
+  if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k'){ e.preventDefault(); openSearch(); }
+});
+$('searchDrop').addEventListener('click', (e) => { if (e.target === $('searchDrop')) closeSearch(); });
+
+/* ---------- Init ---------- */
+async function init(){
+  try {
+    const res = await fetch('products.json');
+    PRODUCTS = await res.json();
+  } catch (e) {
+    console.error('Failed to load products.json', e);
+    $('grid').innerHTML = `<div class="empty-state"><i class="fas fa-triangle-exclamation"></i><h4>Could not load products</h4><p>Please refresh the page.</p></div>`;
+    hideLoader();
+    return;
+  }
+
+  renderSubFilters();
+  renderCategories();
+  applyFilters();
+  renderScrollers();
+  renderReviews();
+  renderRecent();
+  updateWishBadge();
+  updateOpenStatus();
+  setInterval(updateOpenStatus, 60000);
+
+  // stat counters
+  document.querySelectorAll('.stat-n[data-count]').forEach(el => {
+    const target = parseInt(el.dataset.count, 10);
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if (e.isIntersecting){ animateCount(el, target); io.disconnect(); } });
+    }, {threshold:.5});
+    io.observe(el);
+  });
+
+  // deep-link to product
+  if (location.hash.startsWith('#p/')){
+    const sku = location.hash.slice(3);
+    openProduct(sku);
+  }
+
+  observeReveal();
+  hideLoader();
+}
+function hideLoader(){ setTimeout(()=>$('loader').classList.add('hide'), 500); }
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
